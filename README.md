@@ -1,4 +1,7 @@
 # Code base for SemSegBench & DetecBench: Benchmarking Reliability and Generalization Beyond Classification
+
+[Link to the Paper: https://arxiv.org/pdf/2505.18015?](https://arxiv.org/pdf/2505.18015?)
+
 Please cite the work if you use the code:
 > BibTeX
 ```
@@ -19,4 +22,5 @@ The semantic segmentation code is based on [mmsegmentation](https://github.com/o
 
 ## For DetecBench go to [object_detection folder](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/tree/main/object_detection).
 The object detection code is based on [mmdetection](https://github.com/open-mmlab/mmdetection).
+
 
