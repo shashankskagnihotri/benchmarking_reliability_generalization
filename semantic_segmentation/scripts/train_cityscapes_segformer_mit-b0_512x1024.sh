@@ -15,7 +15,7 @@ echo "Started at $(date)";
 
 cd mmsegmentation
 
-python tools/train.py configs/segformer/segformer_mit-b0_8xb1-160k_cityscapes-512x1024.py
+python tools/train.py ../configs/segformer/segformer_mit-b0_8xb1-160k_cityscapes-512x1024.py
 
 end='date +%s'
 runtime=$((end-start))

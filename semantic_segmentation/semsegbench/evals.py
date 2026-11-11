@@ -12,7 +12,7 @@ from mmengine.config import Config
 from torch.hub import _get_torch_home
 
 from .semseg_wrapper import SemSegWrapper
-from .utils import get_args_parser, get_config_path, get_checkpoint_path, get_results
+from .utils import get_args_parser, get_config_path, get_checkpoint_path, get_results, _norm_crop
 from mmsegmentation.tools.test import main
 
 
@@ -23,6 +23,25 @@ common_corruptions = [
 ] 
     
 attacks = ['pgd', 'segpgd', 'cospgd']
+
+
+def _cached_filters(model_name, backbone, dataset, crop_size):
+    filters = {"architecture": model_name, "backbone": backbone, "dataset": dataset}
+    crop = _norm_crop(crop_size)
+    if crop:
+        filters["crop_size"] = crop
+    return filters
+
+
+def _one_cached_row(results_df, model_name, backbone, dataset):
+    if results_df is None or results_df.empty:
+        return None
+    if len(results_df) > 1:
+        raise ValueError(
+            f"More than one checkpoint matches {model_name}, {backbone}, {dataset}. "
+            "Pass crop_size, for example 512x1024 or 1024x1024."
+        )
+    return results_df.iloc[0]
 
 
 def load_model(model_name: str, backbone: str, dataset: str, crop_size: str = None, load_without_weights = False):
@@ -102,17 +121,16 @@ def evaluate(
             wrapper = SemSegWrapper("semsegbench/Config-Paths.csv")
             
             results_df = wrapper.get_result(
-                filters={'architecture': model_name, 'backbone': backbone, 'dataset': dataset},
+                filters=_cached_filters(model_name, backbone, dataset, crop_size),
                 return_metric=["aAcc", "mIoU", "mAcc"],
                 test_type='2d',
             )
 
-            if results_df is not None:
-                results = {}
-
+            results = {}
+            row = _one_cached_row(results_df, model_name, backbone, dataset)
+            if row is not None:
                 for corruption in common_corruptions:
                     metrics = ['aAcc', 'mIoU', 'mAcc']
-                    row = results_df.iloc[0]
                     metric_values = {metric: row[f'{metric}_2d_{corruption}'] for metric in metrics}
 
                     if all(not math.isnan(value) for value in metric_values.values()):
@@ -163,16 +181,17 @@ def evaluate(
                 wrapper = SemSegWrapper("semsegbench/Config-Paths.csv")
 
                 results_df = wrapper.get_result(
-                    filters={'architecture': model_name, 'backbone': backbone, 'dataset': dataset},
+                    filters=_cached_filters(model_name, backbone, dataset, crop_size),
                     return_metric=["aAcc", "mIoU", "mAcc"],
                     test_type=threat_model,
                 )
 
-                metrics = ['aAcc', 'mIoU', 'mAcc']
-                row = results_df.iloc[0]
-                results = {metric: row[f'{metric}_{threat_model}_{lp_norm}'] for metric in metrics}
-                if all(not math.isnan(value) for value in results.values()):
-                    return model, results
+                row = _one_cached_row(results_df, model_name, backbone, dataset)
+                if row is not None:
+                    metrics = ['aAcc', 'mIoU', 'mAcc']
+                    results = {metric: row[f'{metric}_{threat_model}_{lp_norm}'] for metric in metrics}
+                    if all(not math.isnan(value) for value in results.values()):
+                        return model, results
 
         # run Adversarial Attacks
         args = get_args_parser()
@@ -208,14 +227,14 @@ def evaluate(
             wrapper = SemSegWrapper("semsegbench/Config-Paths.csv")
             
             results_df = wrapper.get_result(
-                filters={'architecture': model_name, 'backbone': backbone, 'dataset': dataset},
+                filters=_cached_filters(model_name, backbone, dataset, crop_size),
                 return_metric=["aAcc", "mIoU", "mAcc"],
                 test_type='acdc',
             )
 
-            if results_df is not None:
+            row = _one_cached_row(results_df, model_name, backbone, dataset)
+            if row is not None:
                 metrics = ['aAcc', 'mIoU', 'mAcc']
-                row = results_df.iloc[0]
                 results = {metric: row[f'{metric}_acdc_{condition}'] for metric in metrics}
                 if all(not math.isnan(value) for value in results.values()):
                     return model, results
