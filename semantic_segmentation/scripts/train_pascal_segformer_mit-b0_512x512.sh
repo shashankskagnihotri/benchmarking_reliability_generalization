@@ -17,7 +17,7 @@ start=$(date +%s)
 
 cd mmsegmentation
 
-python tools/train.py configs/segformer/segformer_mit-b0_8xb2-160k_voc12aug-512x512.py
+python tools/train.py ../configs/segformer/segformer_mit-b0_8xb2-160k_voc12aug-512x512.py
 
 end=$('date +%s')
 runtime=$((end-start))

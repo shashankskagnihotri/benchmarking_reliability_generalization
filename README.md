@@ -1,10 +1,10 @@
-# Code base for SemSegBench & DetecBench: Benchmarking Reliability and Generalization Beyond Classification
+# SemSegBench and DetecBench
 
-[Link to the Paper: https://arxiv.org/pdf/2505.18015?](https://arxiv.org/pdf/2505.18015?)
+Benchmarking reliability and generalization for semantic segmentation and object detection.
 
-Please cite the work if you use the code:
-> BibTeX
-```
+Paper: [arXiv:2505.18015](https://arxiv.org/abs/2505.18015)
+
+```bibtex
 @article{agnihotri2025semsegbench,
   title={SEMSEGBENCH \& DETECBENCH: Benchmarking Reliability and Generalization Beyond Classification},
   author={Agnihotri, Shashank and Schader, David and Jakubassa, Jonas and Sharei, Nico and Kral, Simon and Weber, Ruben and Keuper, Margret and others},
@@ -13,14 +13,30 @@ Please cite the work if you use the code:
 }
 ```
 
-> Normal Text
+```bash
+git clone --recursive https://github.com/shashankskagnihotri/benchmarking_reliability_generalization.git
+cd benchmarking_reliability_generalization
 ```
-Agnihotri, Shashank, David Schader, Jonas Jakubassa, Nico Sharei, Simon Kral, Ruben Weber, and Margret Keuper. "SEMSEGBENCH & DETECBENCH: Benchmarking Reliability and Generalization Beyond Classification." arXiv preprint arXiv:2505.18015 (2025).
+
+`--recursive` checks out `object_detection/3DCommonCorruptions`. `.gitmodules` also names `object_detection/mmdetection` (`https://github.com/jjakubassa/mmdetection`), but this repository does not record a commit for it. Clone that repository into `object_detection/mmdetection` yourself. DetecBench imports it from there.
+
+## Map
+
+| | |
+| --- | --- |
+| [SemSegBench](semantic_segmentation/README.md) | Install, data layout, `evaluate` |
+| [DetecBench](object_detection/README.md) | Install, attacks, corruptions |
+| [Models](semantic_segmentation/SUPPORTED_MODELS.md) | 76 segmentation checkpoints, including crop size |
+| [Provenance](docs/model_provenance.md) | Public vs author-trained, configs, checkpoint URLs |
+| [Models trained for this study](docs/model_provenance.md#models-trained-for-this-study) | The 15 runs with a training script and config |
+| [Results](docs/results.md) | Where the numbers are, and what a row means |
+| [Evaluation manifest](results/semseg_evaluations.csv) | Recorded segmentation evaluations |
+| [Model summary](results/semseg_model_summary.csv) | Clean mIoU, ReM, GAM, parameter count |
+
+## Reproduce the tables
+
+```bash
+python analysis/reproduce_results.py
 ```
-## For SemSegBench go to [semantic_segmentation](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/tree/main/semantic_segmentation) folder.
-The semantic segmentation code is based on [mmsegmentation](https://github.com/open-mmlab/mmsegmentation).
 
-## For DetecBench go to [object_detection folder](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/tree/main/object_detection).
-The object detection code is based on [mmdetection](https://github.com/open-mmlab/mmdetection).
-
-
+Reads `semantic_segmentation/semsegbench/Config-Paths.csv` and rewrites the tables and figures under `results/`. No GPU and no extra packages. Details are in [docs/results.md](docs/results.md).

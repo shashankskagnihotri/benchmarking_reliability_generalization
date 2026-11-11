@@ -17,11 +17,12 @@ The toolkit is built on top of MMDetection and provides a standardized way to be
 
 We use uv for installing dependencies, which provides faster and more reliable dependency resolution. The installation instructions for UV can be found at https://docs.astral.sh/uv/.
 
-If not already done, download this repo:
+If not already done, download this repo. `--recursive` checks out `3DCommonCorruptions`. `mmdetection` is named in `.gitmodules` but this repository does not record a commit for it, so clone it into this directory:
 
 ```bash
-git clone git@github.com:shashankskagnihotri/measuing_reliability_genelization.git --recursive
-cd measuing_reliability_genelization/object_detection
+git clone --recursive https://github.com/shashankskagnihotri/benchmarking_reliability_generalization.git
+cd benchmarking_reliability_generalization/object_detection
+git clone https://github.com/jjakubassa/mmdetection.git mmdetection
 ```
 
 Then setup a virtual environment with all dependencies:
@@ -35,13 +36,7 @@ uv run mim install mmcv
 
 ## Download data
 
-DetecBench supports evaluation on standard datasets including COCO and Pascal VOC. Use the commands below to download these datasets:
-
-```bash
-uv run mmdetection/tools/misc/download_dataset.py --dataset-name coco2017 --save-dir ./data/coco --unzip --delete
-uv run mmdetection/tools/misc/download_dataset.py --dataset-name voc2012 --save-dir ./data --unzip --delete
-uv run mmdetection/tools/misc/download_dataset.py --dataset-name voc2017 --save-dir ./data --unzip --delete
-```
+COCO and PASCAL VOC are loaded through the MMDetection checkout above. After `mmdetection/` exists, its `tools/misc/download_dataset.py` can fetch `coco2017`, `voc2012`, and `voc2017`. That script is not in this repository until that clone is in place.
 
 ## Generate corrupted data
 
@@ -89,15 +84,11 @@ For each dataset (COCO and VOC), corrupted images should be organized in a hiera
 4. Inside each severity folder: Corrupted images with the same filenames as the original dataset
 
 
-## Download pre-trained models
+## Checkpoints
 
-You can download pre-trained models using the provided script:
+There is no download script. `evaluate` takes a folder and uses the first `.py` and the first `.pth` in it (`src/detecbench/detecbench.py`). Create `models/<name>/` and put one config and one checkpoint there, then pass that folder as `model_folder`.
 
-```bash
-python download_models.py
-```
-
-This will download a selection of common object detection models that are compatible with DetecBench.
+The detectors named in the paper, and which training details are actually in this repository, are listed in [`../docs/model_provenance.md`](../docs/model_provenance.md). Per-detector result files are not in the repository; see [`../docs/results.md`](../docs/results.md).
 
 ## Evaluation
 
@@ -226,8 +217,6 @@ To add your own models for evaluation:
 1. Create a new folder in the `models` directory
 2. Add your model configuration (`.py`) and checkpoint (`.pth`) files
 3. Run the evaluation specifying your model folder
-
-## Using a different
 
 ## Contributing
 

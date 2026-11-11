@@ -20,16 +20,16 @@ cd mmsegmentation
 
 if [[ $SLURM_ARRAY_TASK_ID -eq 2 ]]
 then
-    python tools/train.py configs/segformer/segformer_mit-b2_8xb1-160k_cityscapes-512x1024.py
+    python tools/train.py ../configs/segformer/segformer_mit-b2_8xb1-160k_cityscapes-512x1024.py
 elif [[ $SLURM_ARRAY_TASK_ID -eq 3 ]]
 then
-    python tools/train.py configs/segformer/segformer_mit-b3_8xb1-160k_cityscapes-512x1024.py
+    python tools/train.py ../configs/segformer/segformer_mit-b3_8xb1-160k_cityscapes-512x1024.py
 elif [[ $SLURM_ARRAY_TASK_ID -eq 4 ]]
 then
-    python tools/train.py configs/segformer/segformer_mit-b4_8xb1-160k_cityscapes-512x1024.py
+    python tools/train.py ../configs/segformer/segformer_mit-b4_8xb1-160k_cityscapes-512x1024.py
 elif [[ $SLURM_ARRAY_TASK_ID -eq 5 ]]
 then
-    python tools/train.py configs/segformer/segformer_mit-b5_8xb1-160k_cityscapes-512x1024.py
+    python tools/train.py ../configs/segformer/segformer_mit-b5_8xb1-160k_cityscapes-512x1024.py
 else
     echo "All submitted"
 fi

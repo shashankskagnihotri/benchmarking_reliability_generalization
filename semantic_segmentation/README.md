@@ -210,9 +210,9 @@ model = load_model(
 
 #### Supported Models
 
-To browse the full list of supported models:
+The checkpoint list, with crop size, is [`SUPPORTED_MODELS.md`](./SUPPORTED_MODELS.md). The same architecture and backbone on one dataset can be two checkpoints when the crop differs. Those rows stay. `model_id` includes the crop.
 
-- View [`SUPPORTED_MODELS.md`](./SUPPORTED_MODELS.md)
+`load_model` opens the config recorded for that checkpoint in [`../results/model_provenance.csv`](../results/model_provenance.csv). Weights are not in git. A local file, if you have one, goes in `checkpoints/<architecture>/`. ResNet filenames are matched as `r50`, `r101`, or `r18`. Other backbones are matched as written (`mit-b0`, `swin-b`), and the name must also contain the dataset. `evaluate(..., retrieve_existing=True)` returns a cached row only when architecture, backbone, dataset, and crop identify one checkpoint. Training settings are in [`../docs/model_provenance.md`](../docs/model_provenance.md). Scores are in [`../docs/results.md`](../docs/results.md).
 
 ### Evaluation
 
