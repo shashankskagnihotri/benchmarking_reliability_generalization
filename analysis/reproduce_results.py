@@ -49,71 +49,21 @@ PAPER_SETTINGS = (
 )
 EXPECTED_CLASSES = {"ade20k": "150", "cityscapes": "19", "voc": "21"}
 
-# Appendix M of arXiv:2505.18015. Not recovered from a result file.
-DETECTION_MODELS = [
-    ("object_detection", "MS-COCO", "ATSS", "ResNet101"),
-    ("object_detection", "MS-COCO", "Cascade Mask R-CNN", "ResNet101"),
-    ("object_detection", "MS-COCO", "Cascade Mask R-CNN", "ResNeXt101"),
-    ("object_detection", "MS-COCO", "Cascade R-CNN", "ResNet101"),
-    ("object_detection", "MS-COCO", "Cascade R-CNN", "ResNeXt101"),
-    ("object_detection", "MS-COCO", "Cascade R-CNN", "ConvNeXt-S"),
-    ("object_detection", "MS-COCO", "Cascade R-CNN", "Swin-S"),
-    ("object_detection", "MS-COCO", "CenterNet", "ResNet18"),
-    ("object_detection", "MS-COCO", "Co-DETR", "ResNet50"),
-    ("object_detection", "MS-COCO", "Co-DETR", "Swin-L"),
-    ("object_detection", "MS-COCO", "Conditional DETR", "ResNet50"),
-    ("object_detection", "MS-COCO", "DAB-DETR", "ResNet50"),
-    ("object_detection", "MS-COCO", "DDOD-ATSS", "ResNet50"),
-    ("object_detection", "MS-COCO", "DDQ-DETR", "Swin-L"),
-    ("object_detection", "MS-COCO", "DDQ-DETR", "ResNet50"),
-    ("object_detection", "MS-COCO", "Deformable DETR", "ResNet50"),
-    ("object_detection", "MS-COCO", "Deformable DETR", "ConvNeXt-S"),
-    ("object_detection", "MS-COCO", "Deformable DETR", "Swin-S"),
-    ("object_detection", "MS-COCO", "DETR", "ResNet50"),
-    ("object_detection", "MS-COCO", "DINO", "ResNet50"),
-    ("object_detection", "MS-COCO", "DINO", "Swin-L"),
-    ("object_detection", "MS-COCO", "Double Heads", "ResNet50"),
-    ("object_detection", "MS-COCO", "Dynamic R-CNN", "ResNet50"),
-    ("object_detection", "MS-COCO", "Faster R-CNN", "ResNet101"),
-    ("object_detection", "MS-COCO", "Faster R-CNN", "ResNeXt101"),
-    ("object_detection", "MS-COCO", "FCOS", "ResNeXt101"),
-    ("object_detection", "MS-COCO", "FoveaBox", "ResNet101"),
-    ("object_detection", "MS-COCO", "FreeAnchor", "ResNet101"),
-    ("object_detection", "MS-COCO", "FreeAnchor", "ResNeXt101"),
-    ("object_detection", "MS-COCO", "FSAF", "ResNet101"),
-    ("object_detection", "MS-COCO", "FSAF", "ResNeXt101"),
-    ("object_detection", "MS-COCO", "GA-Faster R-CNN", "ResNeXt101"),
-    ("object_detection", "MS-COCO", "GA-RetinaNet", "ResNeXt101"),
-    ("object_detection", "MS-COCO", "GLIP", "Swin-L"),
-    ("object_detection", "MS-COCO", "Grid R-CNN", "ResNet101"),
-    ("object_detection", "MS-COCO", "Grid R-CNN", "ResNeXt101"),
-    ("object_detection", "MS-COCO", "Libra R-CNN", "ResNet101"),
-    ("object_detection", "MS-COCO", "Libra R-CNN", "ResNeXt101"),
-    ("object_detection", "MS-COCO", "PAA", "ResNet101"),
-    ("object_detection", "MS-COCO", "PAA", "ConvNeXt-S"),
-    ("object_detection", "MS-COCO", "PAA", "Swin-S"),
-    ("object_detection", "MS-COCO", "RepPoints", "ResNet101"),
-    ("object_detection", "MS-COCO", "RepPoints", "ResNeXt101"),
-    ("object_detection", "MS-COCO", "RetinaNet", "ResNet101"),
-    ("object_detection", "MS-COCO", "RetinaNet", "ResNeXt101"),
-    ("object_detection", "MS-COCO", "RTMDet-l", "ConvNeXt-B"),
-    ("object_detection", "MS-COCO", "RTMDet-l", "Swin-B"),
-    ("object_detection", "MS-COCO", "SABL Cascade R-CNN", "ResNet101"),
-    ("object_detection", "MS-COCO", "SABL Faster R-CNN", "ResNet101"),
-    ("object_detection", "MS-COCO", "SABL RetinaNet", "ResNet101"),
-    ("object_detection", "MS-COCO", "Sparse R-CNN", "ResNet101"),
-    ("object_detection", "MS-COCO", "Sparse R-CNN", "ConvNeXt-S"),
-    ("object_detection", "MS-COCO", "Sparse R-CNN", "Swin-S"),
-    ("object_detection", "MS-COCO", "TOOD", "ResNet101"),
-    ("object_detection", "MS-COCO", "TOOD", "ResNeXt101"),
-    ("object_detection", "MS-COCO", "TOOD", "ConvNeXt-S"),
-    ("object_detection", "MS-COCO", "TOOD", "Swin-S"),
-    ("object_detection", "MS-COCO", "VarifocalNet", "ResNet101"),
-    ("object_detection", "MS-COCO", "VarifocalNet", "ResNeXt101"),
-    ("object_detection", "MS-COCO", "MM Grounding DINO", "Swin-L"),
-    ("object_detection", "PASCAL VOC", "Faster R-CNN", "ResNet50"),
-    ("object_detection", "PASCAL VOC", "RetinaNet", "ResNet50"),
+# 61 COCO detectors x these 67 columns = 4,087, the count stated in the paper.
+# Summaries (gam, rem_20, mean_2d, mean_3d) are not extra evaluations.
+DET_COCO_SRC = "results/supplementary/detection/method_with_time_stamp.csv"
+DET_VOC_SRC = "results/supplementary/detection/pascal_results.csv"
+DET_ATTACKS = ["fgsm"] + [f"pgd_{i}" for i in range(1, 21)] + [f"bim_{i}" for i in range(1, 21)]
+DET_CORRUPTIONS = [
+    "gaussian_noise_2d", "shot_noise_2d", "impulse_noise_2d", "defocus_blur_2d",
+    "glass_blur_2d", "motion_blur_2d", "zoom_blur_2d", "snow_2d", "frost_2d",
+    "fog_2d", "brightness_2d", "contrast_2d", "elastic_transform_2d",
+    "pixelate_2d", "jpeg_compression_2d", "color_quant_3d", "far_focus_3d",
+    "fog_3d", "iso_noise_3d", "low_light_3d", "near_focus_3d",
+    "xy_motion_blur_3d", "z_motion_blur_3d", "h265_crf_3d", "h265_abr_3d",
 ]
+DET_GAM = [name for name in DET_CORRUPTIONS if not name.startswith("h265")]
+DET_COCO_SETTINGS = ["iid"] + DET_ATTACKS + DET_CORRUPTIONS
 
 
 def num(value: str):
@@ -531,6 +481,100 @@ def write_csv(path: Path, rows, fieldnames):
         writer.writerows(rows)
 
 
+def placeholder(value: str) -> bool:
+    return str(value).strip() in ("", "999", "999.0")
+
+
+def detection_origin(flag: str) -> str:
+    if flag == "0":
+        return "supplementary pretrained=0"
+    if flag == "1":
+        return "supplementary pretrained=1"
+    return "not recorded"
+
+
+def coco_evaluations(rows):
+    evaluations = []
+    missing = []
+    for row in rows:
+        model_id = row["architecture"]
+        for setting in DET_COCO_SETTINGS:
+            value = row[setting].strip()
+            if placeholder(value):
+                missing.append({
+                    "model_id": model_id,
+                    "setting": setting,
+                    "reason": "placeholder 999.0 in method_with_time_stamp.csv",
+                })
+                continue
+            if setting == "iid":
+                kind = "clean"
+            elif setting in DET_ATTACKS:
+                kind = "attack"
+            else:
+                kind = "corruption"
+            iterations = setting.split("_", 1)[1] if setting.startswith(("pgd_", "bim_")) else ""
+            evaluations.append({
+                "evaluation_id": f"{model_id}__{setting}",
+                "task": "object_detection",
+                "dataset": row["dataset"],
+                "architecture": row["method_short"],
+                "backbone": row["backbone"],
+                "model_id": model_id,
+                "config": "",
+                "checkpoint": "",
+                "evaluation_type": kind,
+                "attack_or_corruption": setting,
+                "iterations": iterations,
+                "mAP": value,
+                "result_file": DET_COCO_SRC,
+            })
+    return evaluations, missing
+
+
+def detection_summary(rows, source):
+    summary = []
+    mismatches = []
+    for row in rows:
+        clean = num(row["iid"])
+        attack_vals = [float(row[name]) for name in ("pgd_20", "bim_20") if name in row and not placeholder(row[name])]
+        rem = min(attack_vals) if len(attack_vals) == 2 else None
+        if "rem_20" in row and not placeholder(row["rem_20"]) and rem is not None:
+            if abs(float(row["rem_20"]) - rem) > 1e-6:
+                mismatches.append((row["architecture"], "rem", row["rem_20"], rem))
+        gam_vals = [float(row[name]) for name in DET_GAM if name in row and not placeholder(row[name])]
+        gam = min(gam_vals) if len(gam_vals) == len(DET_GAM) else None
+        if "gam" in row and not placeholder(row["gam"]) and gam is not None:
+            if abs(float(row["gam"]) - gam) > 1e-6:
+                mismatches.append((row["architecture"], "gam", row["gam"], gam))
+
+        def drop(score):
+            if clean is None or score is None or clean == 0:
+                return ""
+            return f"{(clean - score) / clean:.4f}"
+
+        summary.append({
+            "model_id": row["architecture"],
+            "architecture": row["method_short"],
+            "backbone": row["backbone"],
+            "dataset": row["dataset"],
+            "parameters": row["num_params"],
+            "pretrained_flag": row["pretrained"],
+            "origin": detection_origin(row["pretrained"]),
+            "clean_mAP": row["iid"],
+            "ReM": fmt(rem),
+            "stored_rem_20": "" if "rem_20" not in row or placeholder(row.get("rem_20", "")) else row["rem_20"],
+            "GAM": fmt(gam),
+            "stored_gam": "" if "gam" not in row or placeholder(row.get("gam", "")) else row["gam"],
+            "relative_drop_ReM": drop(rem),
+            "relative_drop_GAM": drop(gam),
+            "config": "",
+            "checkpoint": "",
+            "result_file": source,
+        })
+    return summary, mismatches
+
+
 def scatter_svg(path: Path, title: str, panels):
     width, height = 980, 340
     panel_w = 300
@@ -744,27 +788,53 @@ def main():
     write_csv(OUT / "semseg_evaluations.csv", evaluations, list(evaluations[0].keys()))
     write_csv(OUT / "semseg_missing_settings.csv", missing, ["model_id", "setting", "reason"])
     write_csv(OUT / "semseg_model_summary.csv", summary, list(summary[0].keys()))
+    coco_rows = list(csv.DictReader((ROOT / DET_COCO_SRC).open(newline="")))
+    voc_rows = list(csv.DictReader((ROOT / DET_VOC_SRC).open(newline="")))
+    det_evals, det_missing = coco_evaluations(coco_rows)
+    det_summary, det_mismatches = detection_summary(coco_rows, DET_COCO_SRC)
+    voc_summary, voc_mismatches = detection_summary(voc_rows, DET_VOC_SRC)
+    det_mismatches.extend(voc_mismatches)
+    write_csv(OUT / "detection_evaluations.csv", det_evals, list(det_evals[0].keys()))
+    write_csv(OUT / "detection_missing_settings.csv", det_missing, ["model_id", "setting", "reason"])
+    write_csv(OUT / "detection_model_summary.csv", det_summary + voc_summary, list(det_summary[0].keys()))
+    voc_settings = ["iid"] + [name for name in DET_CORRUPTIONS if not name.startswith("h265")]
+    voc_evals = []
+    for row in voc_rows:
+        for setting in voc_settings:
+            voc_evals.append({
+                "evaluation_id": f"{row['architecture']}__{setting}",
+                "task": "object_detection",
+                "dataset": row["dataset"],
+                "architecture": row["method_short"],
+                "backbone": row["backbone"],
+                "model_id": row["architecture"],
+                "evaluation_type": "clean" if setting == "iid" else "corruption",
+                "attack_or_corruption": setting,
+                "mAP": row[setting],
+                "result_file": DET_VOC_SRC,
+            })
+    write_csv(OUT / "detection_voc_evaluations.csv", voc_evals, list(voc_evals[0].keys()))
     detection_rows = []
-    for task, dataset, architecture, backbone in DETECTION_MODELS:
-        detection_rows.append(
-            {
-                "task": task,
-                "dataset": dataset,
-                "architecture": architecture,
-                "backbone": backbone,
-                "model_id": "",
-                "origin": "not recorded in this repository",
-                "config": "",
-                "checkpoint": "",
-                "pretraining": "",
-                "input_resolution": "",
-                "iterations_or_epochs": "",
-                "optimizer": "",
-                "augmentation": "",
-                "source": "manuscript Appendix M, arXiv:2505.18015",
-                "result_file": "",
-            }
-        )
+    for row in det_summary + voc_summary:
+        detection_rows.append({
+            "task": "object_detection",
+            "dataset": row["dataset"],
+            "architecture": row["architecture"],
+            "backbone": row["backbone"],
+            "model_id": row["model_id"],
+            "origin": row["origin"],
+            "config": "",
+            "checkpoint": "",
+            "pretraining": row["pretrained_flag"],
+            "input_resolution": "",
+            "iterations_or_epochs": "",
+            "optimizer": "",
+            "augmentation": "",
+            "parameters": row["parameters"],
+            "clean_mAP": row["clean_mAP"],
+            "source": row["result_file"],
+            "result_file": row["result_file"],
+        })
     write_csv(OUT / "detection_models_manuscript.csv", detection_rows, list(detection_rows[0].keys()))
 
     for dataset in ("ade20k", "cityscapes", "voc"):
@@ -780,6 +850,22 @@ def main():
                 points.append((x, y, row["architecture"]))
             panels.append(("clean mIoU", ylabel, points))
         scatter_svg(FIG / f"{dataset}.svg", f"{dataset}: clean mIoU against worst-case scores", panels)
+    coco_points = []
+    for row in det_summary:
+        x = num(row["clean_mAP"])
+        y = num(row["ReM"])
+        g = num(row["GAM"])
+        if x is None:
+            continue
+        coco_points.append((x, y, g, row["architecture"]))
+    scatter_svg(
+        FIG / "coco.svg",
+        "MS-COCO: clean mAP against worst-case scores",
+        [
+            ("clean mAP", "ReM", [(x, y, arch) for x, y, _, arch in coco_points if y is not None]),
+            ("clean mAP", "GAM", [(x, g, arch) for x, _, g, arch in coco_points if g is not None]),
+        ],
+    )
 
     (SS / "SUPPORTED_MODELS.md").write_text(supported_models_md(models))
 
@@ -802,8 +888,12 @@ def main():
     for row in provenance:
         origins[row["origin"]] = origins.get(row["origin"], 0) + 1
     print("origins", origins)
-    print(f"detection rows transcribed {len(detection_rows)}")
-    if unresolved or narm_mismatch:
+    print(f"detection models {len(detection_rows)}")
+    print(f"detection recorded evaluations {len(det_evals)}")
+    print(f"detection placeholder slots {len(det_missing)}")
+    print(f"detection paper slots {len(coco_rows) * len(DET_COCO_SETTINGS)}")
+    print(f"detection metric mismatches {len(det_mismatches)}")
+    if unresolved or narm_mismatch or det_mismatches:
         return 1
     return 0
 

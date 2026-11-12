@@ -1,0 +1,49 @@
+evaluation_id,task,dataset,architecture,backbone,model_id,evaluation_type,attack_or_corruption,mAP,result_file
+Faster-R-CNN_R-50-FPN_voc0712__iid,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,clean,iid,0.8035,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__gaussian_noise_2d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,gaussian_noise_2d,0.46421,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__shot_noise_2d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,shot_noise_2d,0.49004,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__impulse_noise_2d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,impulse_noise_2d,0.44815,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__defocus_blur_2d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,defocus_blur_2d,0.35228,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__glass_blur_2d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,glass_blur_2d,0.1257,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__motion_blur_2d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,motion_blur_2d,0.35153,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__zoom_blur_2d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,zoom_blur_2d,0.32669,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__snow_2d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,snow_2d,0.52286,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__frost_2d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,frost_2d,0.4822,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__fog_2d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,fog_2d,0.6976,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__brightness_2d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,brightness_2d,0.76413,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__contrast_2d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,contrast_2d,0.64219,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__elastic_transform_2d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,elastic_transform_2d,0.56066,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__pixelate_2d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,pixelate_2d,0.52266,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__jpeg_compression_2d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,jpeg_compression_2d,0.62436,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__color_quant_3d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,color_quant_3d,0.73936,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__far_focus_3d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,far_focus_3d,0.78822,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__fog_3d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,fog_3d,0,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__iso_noise_3d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,iso_noise_3d,0.45161,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__low_light_3d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,low_light_3d,0.56837,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__near_focus_3d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,near_focus_3d,0.78822,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__xy_motion_blur_3d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,xy_motion_blur_3d,0.049939,results/supplementary/detection/pascal_results.csv
+Faster-R-CNN_R-50-FPN_voc0712__z_motion_blur_3d,object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,corruption,z_motion_blur_3d,0.088,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__iid,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,clean,iid,0.7738,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__gaussian_noise_2d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,gaussian_noise_2d,0.40286,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__shot_noise_2d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,shot_noise_2d,0.4403,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__impulse_noise_2d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,impulse_noise_2d,0.41108,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__defocus_blur_2d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,defocus_blur_2d,0.33583,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__glass_blur_2d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,glass_blur_2d,0.1072,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__motion_blur_2d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,motion_blur_2d,0.33708,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__zoom_blur_2d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,zoom_blur_2d,0.31243,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__snow_2d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,snow_2d,0.49781,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__frost_2d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,frost_2d,0.47079,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__fog_2d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,fog_2d,0.67437,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__brightness_2d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,brightness_2d,0.72842,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__contrast_2d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,contrast_2d,0.61337,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__elastic_transform_2d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,elastic_transform_2d,0.49046,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__pixelate_2d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,pixelate_2d,0.48175,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__jpeg_compression_2d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,jpeg_compression_2d,0.59212,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__color_quant_3d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,color_quant_3d,0.71112,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__far_focus_3d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,far_focus_3d,0.75868,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__fog_3d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,fog_3d,0,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__iso_noise_3d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,iso_noise_3d,0.40207,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__low_light_3d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,low_light_3d,0.54396,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__near_focus_3d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,near_focus_3d,0.75868,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__xy_motion_blur_3d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,xy_motion_blur_3d,0.06219,results/supplementary/detection/pascal_results.csv
+Retinanet_R-50-FPN_voc0712__z_motion_blur_3d,object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,corruption,z_motion_blur_3d,0.074176,results/supplementary/detection/pascal_results.csv

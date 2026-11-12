@@ -1,63 +1,64 @@
-task,dataset,architecture,backbone,model_id,origin,config,checkpoint,pretraining,input_resolution,iterations_or_epochs,optimizer,augmentation,source,result_file
-object_detection,MS-COCO,ATSS,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Cascade Mask R-CNN,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Cascade Mask R-CNN,ResNeXt101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Cascade R-CNN,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Cascade R-CNN,ResNeXt101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Cascade R-CNN,ConvNeXt-S,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Cascade R-CNN,Swin-S,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,CenterNet,ResNet18,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Co-DETR,ResNet50,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Co-DETR,Swin-L,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Conditional DETR,ResNet50,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,DAB-DETR,ResNet50,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,DDOD-ATSS,ResNet50,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,DDQ-DETR,Swin-L,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,DDQ-DETR,ResNet50,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Deformable DETR,ResNet50,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Deformable DETR,ConvNeXt-S,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Deformable DETR,Swin-S,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,DETR,ResNet50,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,DINO,ResNet50,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,DINO,Swin-L,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Double Heads,ResNet50,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Dynamic R-CNN,ResNet50,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Faster R-CNN,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Faster R-CNN,ResNeXt101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,FCOS,ResNeXt101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,FoveaBox,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,FreeAnchor,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,FreeAnchor,ResNeXt101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,FSAF,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,FSAF,ResNeXt101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,GA-Faster R-CNN,ResNeXt101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,GA-RetinaNet,ResNeXt101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,GLIP,Swin-L,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Grid R-CNN,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Grid R-CNN,ResNeXt101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Libra R-CNN,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Libra R-CNN,ResNeXt101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,PAA,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,PAA,ConvNeXt-S,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,PAA,Swin-S,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,RepPoints,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,RepPoints,ResNeXt101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,RetinaNet,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,RetinaNet,ResNeXt101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,RTMDet-l,ConvNeXt-B,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,RTMDet-l,Swin-B,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,SABL Cascade R-CNN,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,SABL Faster R-CNN,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,SABL RetinaNet,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Sparse R-CNN,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Sparse R-CNN,ConvNeXt-S,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,Sparse R-CNN,Swin-S,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,TOOD,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,TOOD,ResNeXt101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,TOOD,ConvNeXt-S,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,TOOD,Swin-S,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,VarifocalNet,ResNet101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,VarifocalNet,ResNeXt101,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,MS-COCO,MM Grounding DINO,Swin-L,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,PASCAL VOC,Faster R-CNN,ResNet50,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
-object_detection,PASCAL VOC,RetinaNet,ResNet50,,not recorded in this repository,,,,,,,,"manuscript Appendix M, arXiv:2505.18015",
+task,dataset,architecture,backbone,model_id,origin,config,checkpoint,pretraining,input_resolution,iterations_or_epochs,optimizer,augmentation,parameters,clean_mAP,source,result_file
+object_detection,MS-COCO,ATSS,ResNet101,ATSS_R-101-FPN,supplementary pretrained=1,,,1,,,,,51062106,0.415,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Cascade Mask R-CNN,ResNeXt101,Cascade Mask R-CNN_X-101-64x4d-FPN,supplementary pretrained=1,,,1,,,,,134820094,0.456,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Cascade Mask R-CNN,ResNet101,Cascade Mask R-CNN_R-101-FPN,supplementary pretrained=1,,,1,,,,,96091390,0.434,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Cascade R-CNN,ConvNeXt-S,cascade_rcnn_convnext-s_coco,supplementary pretrained=0,,,0,,,,,94728366,0.44,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Cascade R-CNN,ResNeXt101,Cascade R-CNN_X-101-64x4d-FPN,supplementary pretrained=1,,,1,,,,,126890254,0.447,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Cascade R-CNN,ResNet101,Cascade R-CNN_R-101-FPN,supplementary pretrained=1,,,1,,,,,88161550,0.425,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Cascade R-CNN,Swin-S,cascade_rcnn_swin-s_coco,supplementary pretrained=0,,,0,,,,,94110936,0.449,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,CenterNet,ResNet18,CenterNet_ResNet-18,supplementary pretrained=1,,,1,,,,,14436901,0.295,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Co-DETR,ResNet50,Co-DINO_R-50-FPN,supplementary pretrained=1,,,1,,,,,64928485,0.548,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Co-DETR,Swin-L,Co-DINO_Swin-L,supplementary pretrained=1,,,1,,,,,235471769,0.593,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Conditional DETR,ResNet50,Conditional DETR_R-50-FPN,supplementary pretrained=1,,,1,,,,,43193174,0.41,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,DAB-DETR,ResNet50,DAB-DETR_R-50-FPN,supplementary pretrained=1,,,1,,,,,43446290,0.423,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,DDOD-ATSS,ResNet50,DDOD-ATSS_R-50-FPN,supplementary pretrained=1,,,1,,,,,32152958,0.417,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,DDQ DETR,ResNet50,DDQ DETR-5scale_R-50-FPN,supplementary pretrained=1,,,1,,,,,48696856,0.521,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,DDQ DETR,Swin-L,DDQ DETR-4scale_Swin-L,supplementary pretrained=1,,,1,,,,,218893772,0.587,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,DETR,ResNet50,DETR_R-50-FPN,supplementary pretrained=1,,,1,,,,,41299541,0.399,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,DINO,ResNet50,DINO_R-50-FPN,supplementary pretrained=1,,,1,,,,,47649292,0.501,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,DINO,Swin-L,DINO_Swin-L,supplementary pretrained=1,,,1,,,,,218332544,0.583,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Deformable DETR,ConvNeXt-S,deformable_detr_convnext-s_coco,supplementary pretrained=0,,,0,,,,,61894380,0.462,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Deformable DETR,ResNet50,two-stage Deformable DETR_R-50-FPN,supplementary pretrained=1,,,1,,,,,40938316,0.47,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Deformable DETR,Swin-S,deformable_detr_swin-s_coco,supplementary pretrained=0,,,0,,,,,61276950,0.483,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Double Heads,ResNet50,Double Heads_R-50-FPN,supplementary pretrained=1,,,1,,,,,47115168,0.401,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Dynamic R-CNN,ResNet50,Dynamic R-CNN_R-50-FPN,supplementary pretrained=1,,,1,,,,,41527712,0.389,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,FCOS,ResNeXt101,FCOS_X-101-64x4d-FPN,supplementary pretrained=1,,,1,,,,,89790810,0.427,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,FSAF,ResNeXt101,FSAF_X-101-64x4d-FPN,supplementary pretrained=1,,,1,,,,,93915220,0.424,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,FSAF,ResNet101,FSAF_R-101-FPN,supplementary pretrained=1,,,1,,,,,55186516,0.393,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Faster R-CNN,ResNeXt101,Faster R-CNN_X-101-64x4d-FPN,supplementary pretrained=1,,,1,,,,,99248544,0.421,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Faster R-CNN,ResNet101,Faster R-CNN_R-101-FPN,supplementary pretrained=1,,,1,,,,,60519840,0.418,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,FoveaBox,ResNet101,FoveaBox_R-101-FPN,supplementary pretrained=1,,,1,,,,,57382260,0.42,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,FreeAnchor,ResNeXt101,FreeAnchor_X-101-32x4d-FPN,supplementary pretrained=1,,,1,,,,,56374004,0.419,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,FreeAnchor,ResNet101,FreeAnchor_R-101-FPN,supplementary pretrained=1,,,1,,,,,56735476,0.403,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,GA-Faster R-CNN,ResNeXt101,GA-Faster R-CNN_X-101-64x4d-FPN,supplementary pretrained=1,,,1,,,,,99836713,0.439,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,GA-RetinaNet,ResNeXt101,GA-RetinaNet_X-101-64x4d-FPN,supplementary pretrained=1,,,1,,,,,95095927,0.413,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,GLIP-L,Swin-L,GLIP-L_Swin-L,supplementary pretrained=1,,,1,,,,,430401824,0.594,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Grid R-CNN,ResNeXt101,Grid R-CNN_X-101-64x4d-FPN,supplementary pretrained=1,,,1,,,,,122043689,0.43,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Grid R-CNN,ResNet101,Grid R-CNN_R-101-FPN,supplementary pretrained=1,,,1,,,,,64322857,0.404,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Libra R-CNN,ResNeXt101,Libra R-CNN_X-101-64x4d-FPN,supplementary pretrained=1,,,1,,,,,99511712,0.427,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Libra R-CNN,ResNet101,Libra R-CNN_R-101-FPN,supplementary pretrained=1,,,1,,,,,60783008,0.401,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,MM Grounding DINO,Swin-L,grounding_dino_swin-l,supplementary pretrained=1,,,1,,,,,343118167,0.53,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,PAA,ConvNeXt-S,paa_convnext-s_coco,supplementary pretrained=0,,,0,,,,,57669882,0.444,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,PAA,ResNet101,PAA_R-101-FPN,supplementary pretrained=1,,,1,,,,,51062106,0.451,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,PAA,Swin-S,paa_swin-s_coco,supplementary pretrained=0,,,0,,,,,57052452,0.45,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,RTMDet-l,ConvNeXt-B,RTMDet-l_ConvNeXt-B,supplementary pretrained=1,,,1,,,,,113744892,0.531,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,RTMDet-l,Swin-B,RTMDet-l_Swin-B-P6,supplementary pretrained=1,,,1,,,,,239142280,0.564,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,RepPoints,ResNeXt101,RepPoints_X-101-FPN-DCN,supplementary pretrained=1,,,1,,,,,57826194,0.442,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,RepPoints,ResNet101,RepPoints_R-101-FPN,supplementary pretrained=1,,,1,,,,,55615862,0.405,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,RepPoints,ResNet101,RepPoints_R-101-FPN-DCN,supplementary pretrained=1,,,1,,,,,56902034,0.429,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,RetinaNet,ResNeXt101,RetinaNet_X-101-64x4d-FPN,supplementary pretrained=1,,,1,,,,,95464180,0.41,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,RetinaNet,ResNet101,RetinaNet_R-101-FPN,supplementary pretrained=1,,,1,,,,,56735476,0.389,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,SABL Cascade R-CNN,ResNet101,SABL Cascade R-CNN_R-101-FPN,supplementary pretrained=1,,,1,,,,,90513166,0.43,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,SABL Faster R-CNN,ResNet101,SABL Faster R-CNN_R-101-FPN,supplementary pretrained=1,,,1,,,,,60979812,0.417,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,SABL RetinaNet,ResNet101,SABL RetinaNet_R-101-FPN,supplementary pretrained=1,,,1,,,,,55308424,0.436,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Sparse R-CNN,ConvNeXt-S,sparse_rcnn_convnext-s_coco,supplementary pretrained=0,,,0,,,,,131676488,0.474,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Sparse R-CNN,ResNet101,Sparse R-CNN_R-101-FPN,supplementary pretrained=1,,,1,,,,,125109672,0.462,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,Sparse R-CNN,Swin-S,sparse_rcnn_swin-s_coco,supplementary pretrained=0,,,0,,,,,131059058,0.475,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,TOOD,ConvNeXt-S,tood_convnext-s_coco,supplementary pretrained=0,,,0,,,,,57575054,0.479,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,TOOD,ResNeXt101,TOOD_X-101-64x4d-FPN,supplementary pretrained=1,,,1,,,,,89695982,0.475,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,TOOD,ResNet101,TOOD_R-101-dcnv2,supplementary pretrained=1,,,1,,,,,53394416,0.493,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,TOOD,Swin-S,tood_swin-s_coco,supplementary pretrained=0,,,0,,,,,56957624,0.459,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,VarifocalNet,ResNeXt101,VarifocalNet_X-101-64x4d-FPN,supplementary pretrained=1,,,1,,,,,98226114,0.502,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,MS-COCO,VarifocalNet,ResNet101,VarifocalNet_R-101-FPN,supplementary pretrained=1,,,1,,,,,53712066,0.488,results/supplementary/detection/method_with_time_stamp.csv,results/supplementary/detection/method_with_time_stamp.csv
+object_detection,Pascal VOC,Faster R-CNN,ResNet50,Faster-R-CNN_R-50-FPN_voc0712,supplementary pretrained=1,,,1,,,,,41220212,0.8035,results/supplementary/detection/pascal_results.csv,results/supplementary/detection/pascal_results.csv
+object_detection,Pascal VOC,RetinaNet,ResNet50,Retinanet_R-50-FPN_voc0712,supplementary pretrained=1,,,1,,,,,36498648,0.7738,results/supplementary/detection/pascal_results.csv,results/supplementary/detection/pascal_results.csv
