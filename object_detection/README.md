@@ -86,9 +86,18 @@ For each dataset (COCO and VOC), corrupted images should be organized in a hiera
 
 ## Checkpoints
 
-There is no download script. `evaluate` takes a folder and uses the first `.py` and the first `.pth` in it (`src/detecbench/detecbench.py`). Create `models/<name>/` and put one config and one checkpoint there, then pass that folder as `model_folder`.
+Public segmentation checkpoints are the 45 weights whose URLs are in [`../results/model_provenance.csv`](../results/model_provenance.csv). From this directory:
 
-The detectors named in the paper, and which training details are actually in this repository, are listed in [`../docs/model_provenance.md`](../docs/model_provenance.md). Per-detector result files are not in the repository; see [`../docs/results.md`](../docs/results.md).
+```bash
+python download_models.py --list
+python download_models.py
+```
+
+`--list` prints the destination and does not download. The files go to `../semantic_segmentation/checkpoints/<architecture>/`, which is where SemSegBench looks. Author-trained segmentation weights are not released, and this repository has no detector checkpoint URLs, so those rows are skipped.
+
+To evaluate a detector, create `models/<name>/` with one `.py` and one `.pth`. `evaluate` uses the first of each (`src/detecbench/detecbench.py`).
+
+Segmentation scores are in [`../results/semseg_evaluations.csv`](../results/semseg_evaluations.csv) and [`../results/semseg_model_summary.csv`](../results/semseg_model_summary.csv). The detector names from the paper are in [`../results/detection_models_manuscript.csv`](../results/detection_models_manuscript.csv). Per-detector detection scores are not in this repository. See [`../docs/results.md`](../docs/results.md).
 
 ## Evaluation
 

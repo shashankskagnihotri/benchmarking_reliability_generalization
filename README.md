@@ -33,6 +33,15 @@ cd benchmarking_reliability_generalization
 | [Evaluation manifest](results/semseg_evaluations.csv) | Recorded segmentation evaluations |
 | [Model summary](results/semseg_model_summary.csv) | Clean mIoU, ReM, GAM, parameter count |
 
+Public segmentation checkpoints:
+
+```bash
+python object_detection/download_models.py --list
+python object_detection/download_models.py
+```
+
+`--list` does not download. Author-trained weights and detector checkpoints are not in the table of URLs, so the script skips them.
+
 ## Reproduce the tables
 
 ```bash

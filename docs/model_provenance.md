@@ -54,6 +54,6 @@ Appendix K says a few MS-COCO detectors were trained for the study and the rest 
 
 Appendix M lists the evaluated detectors. That list is transcribed, without invented training fields, in [`results/detection_models_manuscript.csv`](../results/detection_models_manuscript.csv) (62 architecture–backbone pairs). The paper text says 61 detectors. The per-evaluation logs that would reconcile 61 with 4,087 are not in this repository.
 
-DetecBench loads whatever `.py` and `.pth` are in the folder passed as `model_folder` (see `object_detection/src/detecbench/detecbench.py`). There is no `download_models.py`.
+DetecBench loads whatever `.py` and `.pth` are in the folder passed as `model_folder` (see `object_detection/src/detecbench/detecbench.py`). Public segmentation weights are downloaded with `python object_detection/download_models.py`. That script reads the URLs in the provenance table. It skips author-trained weights and every detector, because those URLs are not in this repository.
 
 A single training recipe for every detector was not run. That comparison is outside this release.
