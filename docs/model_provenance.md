@@ -50,10 +50,13 @@ These have a training config and no uncommented script that starts it. They are 
 
 ## Object detection
 
-Appendix K says a few MS-COCO detectors were trained for the study and the rest are public checkpoints. The appendix does not name which ones were trained, and this repository has no detector training configs, checkpoint URLs, or result files.
+The recorded detectors are in [`results/detection_model_summary.csv`](../results/detection_model_summary.csv): 61 MS-COCO models and 2 PASCAL VOC models. Appendix K says a few MS-COCO detectors were trained for this study and the rest are public checkpoints. It does not name the trained detectors, and it does not give input resolution, epochs, augmentation, or optimizer settings. No detector config or checkpoint URL is in this repository or in the supplementary tables.
 
-Appendix M lists the evaluated detectors. That list is transcribed, without invented training fields, in [`results/detection_models_manuscript.csv`](../results/detection_models_manuscript.csv) (62 architecture–backbone pairs). The paper text says 61 detectors. The per-evaluation logs that would reconcile 61 with 4,087 are not in this repository.
+The supplementary column `pretrained` is the only flag that separates the COCO rows:
 
-DetecBench loads whatever `.py` and `.pth` are in the folder passed as `model_folder` (see `object_detection/src/detecbench/detecbench.py`). Public segmentation weights are downloaded with `python object_detection/download_models.py`. That script reads the URLs in the provenance table. It skips author-trained weights and every detector, because those URLs are not in this repository.
+- `pretrained=1` for 51 COCO detectors and both VOC detectors.
+- `pretrained=0` for Cascade R-CNN ConvNeXt-S and Swin-S, Deformable DETR ConvNeXt-S and Swin-S, PAA ConvNeXt-S and Swin-S, Sparse R-CNN ConvNeXt-S and Swin-S, and TOOD ConvNeXt-S and Swin-S.
 
-A single training recipe for every detector was not run. That comparison is outside this release.
+That flag is not, by itself, a training configuration.
+
+`python object_detection/download_models.py` downloads the public segmentation checkpoints listed in the provenance table. It skips every detector, because those URLs are not recorded. DetecBench still loads the first `.py` and the first `.pth` in `model_folder`. A single training recipe for every detector was not run.

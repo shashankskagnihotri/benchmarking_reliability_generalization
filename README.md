@@ -31,7 +31,9 @@ cd benchmarking_reliability_generalization
 | [Models trained for this study](docs/model_provenance.md#models-trained-for-this-study) | The 15 runs with a training script and config |
 | [Results](docs/results.md) | Where the numbers are, and what a row means |
 | [Evaluation manifest](results/semseg_evaluations.csv) | Recorded segmentation evaluations |
+| [Detection manifest](results/detection_evaluations.csv) | Recorded MS-COCO detection evaluations |
 | [Model summary](results/semseg_model_summary.csv) | Clean mIoU, ReM, GAM, parameter count |
+| [Detection summary](results/detection_model_summary.csv) | Clean mAP, ReM, GAM, parameter count |
 
 Public segmentation checkpoints:
 
