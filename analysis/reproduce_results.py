@@ -581,7 +581,7 @@ def supported_models_md(models):
         "",
         "Each row is one evaluated checkpoint. The same architecture, backbone, and dataset can appear twice when the input crop differs. `model_id` is the unique name.",
         "",
-        "Checkpoint files are not in git. `load_model` reads the config path in `results/model_provenance.csv` for that `model_id`. A local `.pth` is optional: `get_checkpoint_path` looks in `checkpoints/<architecture>/`. ResNet filenames are matched as `r50`, `r101`, or `r18`. Other backbones are matched as written (`mit-b0`, `swin-b`). The filename must also contain the dataset, and the crop when more than one file matches. If no local file is found, loading falls back to the MMSegmentation config name, which downloads a published checkpoint when one is registered.",
+        "Checkpoint files are not in git. Public weights are downloaded with `python object_detection/download_models.py` into `checkpoints/<architecture>/`. `load_model` reads the config path in `results/model_provenance.csv` for that `model_id`. `get_checkpoint_path` looks in `checkpoints/<architecture>/`. ResNet filenames are matched as `r50`, `r101`, or `r18`. Other backbones are matched as written (`mit-b0`, `swin-b`). The filename must also contain the dataset, and the crop when more than one file matches. If no local file is found, loading falls back to the MMSegmentation config name, which downloads a published checkpoint when one is registered.",
         "",
         "Provenance, training settings, and checkpoint URLs: [docs/model_provenance.md](../docs/model_provenance.md).",
         "",
