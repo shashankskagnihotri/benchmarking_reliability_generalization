@@ -14,6 +14,8 @@ Derived tables, rebuilt only from that CSV:
 
 `model_id` is the same string as in the provenance table.
 
+ADE20K InternImage-B and InternImage-L had each other's parameter counts in the source table (B was 255,600,606 and L was 128,387,852). Those two cells now match the Cityscapes and VOC counts for the same backbones: B is 128,387,852 and L is 255,600,606. No other cell in `Config-Paths.csv` was edited.
+
 ## What the paper counts as an evaluation
 
 Semantic segmentation: 76 checkpoints × 27 settings = 2,052.
