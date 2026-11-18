@@ -115,7 +115,7 @@ The ten training configs are in [`configs/author_trained/`](configs/author_train
 
 To evaluate a detector, create `models/<name>/` with one `.py` and one `.pth`. `evaluate` uses the first of each (`src/detecbench/detecbench.py`).
 
-Segmentation scores are in [`../results/semseg_evaluations.csv`](../results/semseg_evaluations.csv). MS-COCO detection scores are in [`../results/detection_evaluations.csv`](../results/detection_evaluations.csv) and [`../results/detection_model_summary.csv`](../results/detection_model_summary.csv). See [`../docs/results.md`](../docs/results.md).
+The benchmark records 63 object detectors and 4,046 object-detection evaluations, inside the 5,780 evaluations in [`../results/evaluation_manifest.csv`](../results/evaluation_manifest.csv). Those detection rows are also stored by dataset in [`../results/detection_evaluations.csv`](../results/detection_evaluations.csv) and [`../results/detection_voc_evaluations.csv`](../results/detection_voc_evaluations.csv). The per-detector summary is [`../results/detection_model_summary.csv`](../results/detection_model_summary.csv). See [`../docs/results.md`](../docs/results.md).
 
 ## Evaluation
 

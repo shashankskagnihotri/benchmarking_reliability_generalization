@@ -1,6 +1,6 @@
 # Model provenance
 
-One row in [`results/model_provenance.csv`](../results/model_provenance.csv) is one checkpoint. `model_id` is `architecture_backbone_dataset_crop`. Cityscapes SegFormer is evaluated at 512×1024 and at 1024×1024. ADE20K Mask2Former Swin-B is evaluated at 512×512 and at 640×640.
+[`results/model_provenance.csv`](../results/model_provenance.csv) has 139 rows: 76 semantic segmentation checkpoints and 63 object detectors. `model_id` is `architecture_backbone_dataset_crop` for segmentation. Cityscapes SegFormer is evaluated at 512×1024 and at 1024×1024. ADE20K Mask2Former Swin-B is evaluated at 512×512 and at 640×640.
 
 Segmentation schedules are iteration-based. Augmentation is the `train_pipeline` reached through `_base_`.
 
@@ -30,7 +30,7 @@ Cityscapes SegFormer B2–B5 and VOC SegFormer B1–B5 inherit the optimizer fro
 
 ## Object detection
 
-Sixty-one MS-COCO detectors and two PASCAL VOC detectors are in [`results/detection_model_summary.csv`](../results/detection_model_summary.csv). Ten MS-COCO detectors were trained for this study. Their configs are in [`object_detection/configs/author_trained/`](../object_detection/configs/author_trained/).
+The object-detection benchmark has 63 detectors, one row each in [`results/model_provenance.csv`](../results/model_provenance.csv) and [`results/detection_model_summary.csv`](../results/detection_model_summary.csv). Ten were trained for this study on MS-COCO. Their configs are in [`object_detection/configs/author_trained/`](../object_detection/configs/author_trained/).
 
 Training uses COCO `train2017` under `data/coco/`. The schedule is 36 epochs, validation every epoch, a linear warmup over 1000 iterations (`start_factor=0.001`), and learning-rate drops at epochs 27 and 33 (`gamma=0.1`). Early stopping watches `coco/bbox_mAP`. The train batch size is 2, with `auto_scale_lr` and `base_batch_size=16`. ConvNeXt-S uses AdamW at `2e-4` with layer-wise decay 0.7. Swin-S uses AdamW at `1e-4`, with no decay on `absolute_pos_embed`, `relative_position_bias_table`, and `norm`.
 

@@ -40,7 +40,7 @@ CORRUPTIONS = [
 ATTACKS = ["pgd", "segpgd", "cospgd"]
 NORMS = ["linf", "l2"]
 ACDC = ["fog", "snow", "rain", "night"]
-# 76 models x these 27 slots = 2,052, the count stated in the paper.
+# Setting names used when a segmentation cell is copied into the manifest.
 PAPER_SETTINGS = (
     ["clean"]
     + [f"2d_{name}" for name in CORRUPTIONS]
@@ -50,8 +50,10 @@ PAPER_SETTINGS = (
 )
 EXPECTED_CLASSES = {"ade20k": "150", "cityscapes": "19", "voc": "21"}
 
-# 61 COCO detectors x these 67 columns = 4,087, the count stated in the paper.
 # Summaries (gam, rem_20, mean_2d, mean_3d) are not extra evaluations.
+# Recorded release: 76 segmentation checkpoints, 1,734 segmentation evaluations,
+# 63 detectors, 4,046 object-detection evaluations, 5,780 evaluations in total.
+ANALYSIS = "analysis/reproduce_results.py"
 DET_COCO_SRC = "results/supplementary/detection/method_with_time_stamp.csv"
 DET_VOC_SRC = "results/supplementary/detection/pascal_results.csv"
 DET_ATTACKS = ["fgsm"] + [f"pgd_{i}" for i in range(1, 21)] + [f"bim_{i}" for i in range(1, 21)]
@@ -717,7 +719,7 @@ def supported_models_md(models):
         "",
         "Each row is one evaluated checkpoint. The same architecture, backbone, and dataset can appear twice when the input crop differs. `model_id` is the unique name.",
         "",
-        "Download public weights with `python object_detection/download_models.py`. They are stored in `checkpoints/<architecture>/`. `load_model` uses the config path in `results/model_provenance.csv`. Checkpoint filenames include the backbone (`r50`, `r101`, `r18`, `mit-b0`, `swin-b`), the dataset, and the crop.",
+        "These are the 76 segmentation checkpoints. Download public weights with `python object_detection/download_models.py`. They are stored in `checkpoints/<architecture>/`. `load_model` uses the config path in `results/model_provenance.csv`. Checkpoint filenames include the backbone (`r50`, `r101`, `r18`, `mit-b0`, `swin-b`), the dataset, and the crop.",
         "",
         "Provenance, training settings, and checkpoint URLs: [docs/model_provenance.md](../docs/model_provenance.md).",
         "",
@@ -995,6 +997,8 @@ def main():
             "config_url": info["config_url"],
             "checkpoint": info["checkpoint"],
             "origin": info["origin"],
+            "provenance_file": "results/model_provenance.csv",
+            "analysis": ANALYSIS,
         })
 
     for row in evaluations:
@@ -1010,7 +1014,7 @@ def main():
         )
     for row in det_evals:
         add_slot(
-            "ms_coco",
+            "object_detection",
             row["model_id"],
             row["attack_or_corruption"],
             "recorded",
@@ -1019,7 +1023,18 @@ def main():
             "",
             row["result_file"],
         )
-    expected_slots = len(evaluations) + len(det_evals)
+    for row in voc_evals:
+        add_slot(
+            "object_detection",
+            row["model_id"],
+            row["attack_or_corruption"],
+            "recorded",
+            "mAP",
+            row["mAP"],
+            "",
+            row["result_file"],
+        )
+    expected_slots = len(evaluations) + len(det_evals) + len(voc_evals)
     if len(manifest) != expected_slots or len({row["evaluation_id"] for row in manifest}) != expected_slots:
         raise RuntimeError(f"manifest has {len(manifest)} rows, expected {expected_slots} unique slots")
     write_csv(OUT / "evaluation_manifest.csv", manifest, list(manifest[0].keys()))
@@ -1057,10 +1072,11 @@ def main():
     (SS / "SUPPORTED_MODELS.md").write_text(supported_models_md(models))
 
     authors = [row for row in provenance if row["origin"] == "trained by authors"]
-    print(f"models {len(models)}")
-    print(f"recorded evaluations {len(evaluations)}")
-    print(f"empty paper slots {len(missing)}")
-    print(f"paper slots {len(models) * len(PAPER_SETTINGS)}")
+    det_recorded = len(det_evals) + len(voc_evals)
+    print(f"segmentation checkpoints {len(models)}")
+    print(f"segmentation evaluations {len(evaluations)}")
+    print(f"object detectors {len(detection_rows)}")
+    print(f"object-detection evaluations {det_recorded}")
     print(f"author-trained {len(authors)}")
     for row in authors:
         print(f"  {row['model_id']}  {row['config']}")
@@ -1077,17 +1093,26 @@ def main():
     print("origins", origins)
     recorded_manifest = sum(row["status"] == "recorded" for row in manifest)
     unavailable_manifest = sum(row["status"] == "unavailable" for row in manifest)
-    print(f"detection models {len(detection_rows)}")
-    print(f"detection recorded evaluations {len(det_evals)}")
-    print(f"detection placeholder slots {len(det_missing)}")
-    print(f"detection paper slots {len(coco_rows) * len(DET_COCO_SETTINGS)}")
     print(f"detection metric mismatches {len(det_mismatches)}")
-    print(f"manifest slots {len(manifest)}")
+    print(f"manifest evaluations {len(manifest)}")
     print(f"manifest recorded {recorded_manifest}")
-    print(f"manifest unavailable {unavailable_manifest}")
     print(f"author configs {sum(row['task'] == 'object_detection' and row['origin'] == 'trained by authors' for row in provenance)}")
     for problem in det_problems:
         print(f"detector provenance problem: {problem}")
+    totals_ok = (
+        len(models) == 76
+        and len(evaluations) == 1734
+        and len(detection_rows) == 63
+        and det_recorded == 4046
+        and len(manifest) == 5780
+        and recorded_manifest == 5780
+    )
+    if not totals_ok:
+        print(
+            "benchmark totals do not match 76 / 1,734 / 63 / 4,046 / 5,780",
+            file=sys.stderr,
+        )
+        return 1
     if unresolved or narm_mismatch or det_mismatches or det_problems:
         return 1
     if recorded_manifest + unavailable_manifest != len(manifest):

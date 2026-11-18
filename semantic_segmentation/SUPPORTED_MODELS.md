@@ -2,7 +2,7 @@
 
 Each row is one evaluated checkpoint. The same architecture, backbone, and dataset can appear twice when the input crop differs. `model_id` is the unique name.
 
-Download public weights with `python object_detection/download_models.py`. They are stored in `checkpoints/<architecture>/`. `load_model` uses the config path in `results/model_provenance.csv`. Checkpoint filenames include the backbone (`r50`, `r101`, `r18`, `mit-b0`, `swin-b`), the dataset, and the crop.
+These are the 76 segmentation checkpoints. Download public weights with `python object_detection/download_models.py`. They are stored in `checkpoints/<architecture>/`. `load_model` uses the config path in `results/model_provenance.csv`. Checkpoint filenames include the backbone (`r50`, `r101`, `r18`, `mit-b0`, `swin-b`), the dataset, and the crop.
 
 Provenance, training settings, and checkpoint URLs: [docs/model_provenance.md](../docs/model_provenance.md).
 
