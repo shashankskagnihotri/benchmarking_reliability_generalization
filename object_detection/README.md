@@ -17,7 +17,7 @@ The toolkit is built on top of MMDetection and provides a standardized way to be
 
 We use uv for installing dependencies, which provides faster and more reliable dependency resolution. The installation instructions for UV can be found at https://docs.astral.sh/uv/.
 
-If not already done, download this repo. `--recursive` checks out `3DCommonCorruptions`. `mmdetection` is named in `.gitmodules` but this repository does not record a commit for it, so clone it into this directory:
+Clone the repository, then MMDetection:
 
 ```bash
 git clone --recursive https://github.com/shashankskagnihotri/benchmarking_reliability_generalization.git
@@ -36,7 +36,7 @@ uv run mim install mmcv
 
 ## Download data
 
-COCO and PASCAL VOC are loaded through the MMDetection checkout above. After `mmdetection/` exists, its `tools/misc/download_dataset.py` can fetch `coco2017`, `voc2012`, and `voc2017`. That script is not in this repository until that clone is in place.
+COCO and PASCAL VOC are loaded through the MMDetection checkout. `mmdetection/tools/misc/download_dataset.py` fetches `coco2017`, `voc2012`, and `voc2017`.
 
 ## Generate corrupted data
 
@@ -86,14 +86,32 @@ For each dataset (COCO and VOC), corrupted images should be organized in a hiera
 
 ## Checkpoints
 
-Public segmentation checkpoints are the 45 weights whose URLs are in [`../results/model_provenance.csv`](../results/model_provenance.csv). From this directory:
+Public segmentation checkpoints are listed in [`../results/model_provenance.csv`](../results/model_provenance.csv). From this directory:
 
 ```bash
 python download_models.py --list
 python download_models.py
 ```
 
-`--list` prints the destination and does not download. The files go to `../semantic_segmentation/checkpoints/<architecture>/`, which is where SemSegBench looks. Author-trained segmentation weights are not released, and this repository has no detector checkpoint URLs, so those rows are skipped.
+`--list` prints the destinations. The files go to `../semantic_segmentation/checkpoints/<architecture>/`.
+
+## Author-trained MS-COCO detectors
+
+The ten training configs are in [`configs/author_trained/`](configs/author_trained/). Training uses COCO `train2017`, AdamW, 36 epochs, a 1000-iteration warmup, and learning-rate drops at epochs 27 and 33. ConvNeXt-S uses learning rate `2e-4`. Swin-S uses `1e-4`. The full table is in [`../docs/model_provenance.md`](../docs/model_provenance.md#object-detection).
+
+
+| Architecture | Backbone | Config |
+| --- | --- | --- |
+| Cascade R-CNN | ConvNeXt-S | [cascade_rcnn_convnext-s_coco.py](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/cascade_rcnn_convnext-s_coco.py) |
+| Cascade R-CNN | Swin-S | [cascade_rcnn_swin-s_coco.py](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/cascade_rcnn_swin-s_coco.py) |
+| Deformable DETR | ConvNeXt-S | [deformable_detr_convnext-s_coco.py](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/deformable_detr_convnext-s_coco.py) |
+| Deformable DETR | Swin-S | [deformable_detr_swin-s_coco.py](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/deformable_detr_swin-s_coco.py) |
+| PAA | ConvNeXt-S | [paa_convnext-s_coco.py](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/paa_convnext-s_coco.py) |
+| PAA | Swin-S | [paa_swin-s_coco.py](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/paa_swin-s_coco.py) |
+| Sparse R-CNN | ConvNeXt-S | [sparse_rcnn_convnext-s_coco.py](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/sparse_rcnn_convnext-s_coco.py) |
+| Sparse R-CNN | Swin-S | [sparse_rcnn_swin-s_coco.py](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/sparse_rcnn_swin-s_coco.py) |
+| TOOD | ConvNeXt-S | [tood_convnext-s_coco.py](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/tood_convnext-s_coco.py) |
+| TOOD | Swin-S | [tood_swin-s_coco.py](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/tood_swin-s_coco.py) |
 
 To evaluate a detector, create `models/<name>/` with one `.py` and one `.pth`. `evaluate` uses the first of each (`src/detecbench/detecbench.py`).
 

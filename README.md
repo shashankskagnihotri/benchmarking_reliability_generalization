@@ -18,7 +18,11 @@ git clone --recursive https://github.com/shashankskagnihotri/benchmarking_reliab
 cd benchmarking_reliability_generalization
 ```
 
-`--recursive` checks out `object_detection/3DCommonCorruptions`. `.gitmodules` also names `object_detection/mmdetection` (`https://github.com/jjakubassa/mmdetection`), but this repository does not record a commit for it. Clone that repository into `object_detection/mmdetection` yourself. DetecBench imports it from there.
+`--recursive` checks out `object_detection/3DCommonCorruptions`. DetecBench also uses MMDetection:
+
+```bash
+git clone https://github.com/jjakubassa/mmdetection.git object_detection/mmdetection
+```
 
 ## Map
 
@@ -28,10 +32,12 @@ cd benchmarking_reliability_generalization
 | [DetecBench](object_detection/README.md) | Install, attacks, corruptions |
 | [Models](semantic_segmentation/SUPPORTED_MODELS.md) | 76 segmentation checkpoints, including crop size |
 | [Provenance](docs/model_provenance.md) | Public vs author-trained, configs, checkpoint URLs |
-| [Models trained for this study](docs/model_provenance.md#models-trained-for-this-study) | The 15 runs with a training script and config |
+| [Models trained for this study](docs/model_provenance.md#models-trained-for-this-study) | The 15 segmentation runs with a training script and config |
+| [Author-trained detectors](docs/model_provenance.md#object-detection) | The 10 MS-COCO training configs |
 | [Results](docs/results.md) | Where the numbers are, and what a row means |
-| [Evaluation manifest](results/semseg_evaluations.csv) | Recorded segmentation evaluations |
-| [Detection manifest](results/detection_evaluations.csv) | Recorded MS-COCO detection evaluations |
+| [Evaluations](results/evaluation_manifest.csv) | Stored evaluations |
+| [Segmentation scores](results/semseg_evaluations.csv) | Segmentation evaluations |
+| [Detection scores](results/detection_evaluations.csv) | MS-COCO detection evaluations |
 | [Model summary](results/semseg_model_summary.csv) | Clean mIoU, ReM, GAM, parameter count |
 | [Detection summary](results/detection_model_summary.csv) | Clean mAP, ReM, GAM, parameter count |
 
@@ -42,7 +48,7 @@ python object_detection/download_models.py --list
 python object_detection/download_models.py
 ```
 
-`--list` does not download. Author-trained weights and detector checkpoints are not in the table of URLs, so the script skips them.
+`--list` prints the public segmentation checkpoints. The second command downloads them.
 
 ## Reproduce the tables
 

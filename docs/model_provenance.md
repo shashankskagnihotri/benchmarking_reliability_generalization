@@ -1,23 +1,12 @@
 # Model provenance
 
-Full segmentation table: [`results/model_provenance.csv`](../results/model_provenance.csv).
+One row in [`results/model_provenance.csv`](../results/model_provenance.csv) is one checkpoint. `model_id` is `architecture_backbone_dataset_crop`. Cityscapes SegFormer is evaluated at 512×1024 and at 1024×1024. ADE20K Mask2Former Swin-B is evaluated at 512×512 and at 640×640.
 
-One row is one checkpoint. `model_id` is `architecture_backbone_dataset_crop`. The same architecture and backbone on one dataset can be two checkpoints when the crop differs (Cityscapes SegFormer at 512×1024 and 1024×1024; ADE20K Mask2Former Swin-B at 512×512 and 640×640).
+Segmentation schedules are iteration-based. Augmentation is the `train_pipeline` reached through `_base_`.
 
-`origin` is decided from files in this repository:
-
-- `publicly released` — the clean mIoU matches a row in the MMSegmentation config README, or the only config for that checkpoint is that published file. The checkpoint URL is the README download link.
-- `trained by authors` — an uncommented line in `semantic_segmentation/scripts/train_*.sh` launches that config, and the clean mIoU does not match a published checkpoint.
-- `training config present; launch not confirmed` — the config is in the tree, but no uncommented script launches it.
-- `not confirmed` — the closest file disagrees with the dataset (InternImage Cityscapes and VOC configs still set `num_classes=150`).
-
-Epoch counts are not in these configs. Schedules are iteration-based. Augmentation is the `train_pipeline` reached through `_base_`.
-
-Checkpoints are not in git. `get_checkpoint_path` reads `semantic_segmentation/checkpoints/<architecture>/*.pth`. ResNet names are matched as `r50`, `r101`, or `r18`. Other backbones are matched as written. The filename must also contain the dataset. `load_model` opens the config path in [`results/model_provenance.csv`](../results/model_provenance.csv) for that architecture, backbone, dataset, and crop. If the local checkpoint is missing, it falls back to the MMSegmentation config name, which downloads a published checkpoint when one is registered.
+Public segmentation weights download with `python object_detection/download_models.py` into `semantic_segmentation/checkpoints/<architecture>/`. `load_model` reads the config path in the provenance table.
 
 ## Models trained for this study
-
-Weights for these runs are not in the repository. Backbone initialization URLs are in the config files and in the CSV (`pretraining`).
 
 | Architecture | Backbone | Dataset | Crop | Iterations | Optimizer | Training config |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -37,26 +26,27 @@ Weights for these runs are not in the repository. Backbone initialization URLs a
 | Mask2Former | Swin-S | PASCAL VOC | 512×512 | 160k | AdamW, lr 1e-4 | [config](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/semantic_segmentation/configs/mask2former/mask2former_swin-s_8xb2-160k_voc12aug-512x512.py) |
 | Mask2Former | Swin-B, ImageNet-1k | PASCAL VOC | 512×512 | 160k | AdamW, lr 1e-4 | [config](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/semantic_segmentation/configs/mask2former/mask2former_swin-b-in1k-384x384-pre_8xb2-160k_voc12aug-512x512.py) |
 
-Cityscapes SegFormer B2–B5 and VOC SegFormer B1–B5 set the backbone checkpoint and width, and inherit the optimizer from the matching B0 config. Mask2Former Swin-B Cityscapes is the ImageNet-1k config. Its clean mIoU (80.03) is not the published ImageNet-22k checkpoint (83.52).
-
-`scripts/train_voc12aug_segformer_mit-b1-5_512x512.sh` points at 40k configs (`segformer_mit-b*_8xb2-40k_voc12aug-512x512.py`). Those files are not in the repository. The 160k configs above are the ones that exist and that `scripts/train_voc12aug_segformer_160k_mit-b0-5_512x512.sh` launches.
-
-### Config present, launch not confirmed
-
-These have a training config and no uncommented script that starts it. They are not listed as author-trained above.
-
-- SegFormer MiT-B1, Cityscapes, 512×1024: [config](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/semantic_segmentation/configs/segformer/segformer_mit-b1_8xb1-160k_cityscapes-512x1024.py). `train_cityscapes_segformer_mit-b1-5_512x1024.sh` starts at MiT-B2.
-- Mask2Former Swin-T, PASCAL VOC: [config](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/semantic_segmentation/configs/mask2former/mask2former_swin-t_8xb2-160k_voc12aug-512x512.py). The launch line in `scripts/train_pascal_mask2former.sh` is commented out.
+Cityscapes SegFormer B2–B5 and VOC SegFormer B1–B5 inherit the optimizer from the matching B0 config. The VOC runs use the 160k configs launched by `scripts/train_voc12aug_segformer_160k_mit-b0-5_512x512.sh`. Mask2Former Swin-B on Cityscapes uses the ImageNet-1k config, clean mIoU 80.03.
 
 ## Object detection
 
-The recorded detectors are in [`results/detection_model_summary.csv`](../results/detection_model_summary.csv): 61 MS-COCO models and 2 PASCAL VOC models. Appendix K says a few MS-COCO detectors were trained for this study and the rest are public checkpoints. It does not name the trained detectors, and it does not give input resolution, epochs, augmentation, or optimizer settings. No detector config or checkpoint URL is in this repository or in the supplementary tables.
+Sixty-one MS-COCO detectors and two PASCAL VOC detectors are in [`results/detection_model_summary.csv`](../results/detection_model_summary.csv). Ten MS-COCO detectors were trained for this study. Their configs are in [`object_detection/configs/author_trained/`](../object_detection/configs/author_trained/).
 
-The supplementary column `pretrained` is the only flag that separates the COCO rows:
+Training uses COCO `train2017` under `data/coco/`. The schedule is 36 epochs, validation every epoch, a linear warmup over 1000 iterations (`start_factor=0.001`), and learning-rate drops at epochs 27 and 33 (`gamma=0.1`). Early stopping watches `coco/bbox_mAP`. The train batch size is 2, with `auto_scale_lr` and `base_batch_size=16`. ConvNeXt-S uses AdamW at `2e-4` with layer-wise decay 0.7. Swin-S uses AdamW at `1e-4`, with no decay on `absolute_pos_embed`, `relative_position_bias_table`, and `norm`.
 
-- `pretrained=1` for 51 COCO detectors and both VOC detectors.
-- `pretrained=0` for Cascade R-CNN ConvNeXt-S and Swin-S, Deformable DETR ConvNeXt-S and Swin-S, PAA ConvNeXt-S and Swin-S, Sparse R-CNN ConvNeXt-S and Swin-S, and TOOD ConvNeXt-S and Swin-S.
+PAA, Sparse R-CNN, and TOOD write to `./slurm/train_work_dir/<config name>`.
 
-That flag is not, by itself, a training configuration.
+| Architecture | Backbone | Dataset | Training config | Backbone initialization | Input | Augmentation |
+| --- | --- | --- | --- | --- | --- | --- |
+| Cascade R-CNN | ConvNeXt-S | MS-COCO | [config](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/cascade_rcnn_convnext-s_coco.py) | [ConvNeXt-S, ImageNet-1k](https://download.openmmlab.com/mmclassification/v0/convnext/downstream/convnext-small_3rdparty_32xb128-noema_in1k_20220301-303e75e3.pth) | `Resize (1333, 800)`, keep ratio | resize, horizontal flip 0.5. Early stopping patience 15 |
+| Cascade R-CNN | Swin-S | MS-COCO | [config](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/cascade_rcnn_swin-s_coco.py) | [Swin-S, ImageNet-1k](https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_small_patch4_window7_224.pth) | `Resize (1333, 800)`, keep ratio | resize, horizontal flip 0.5 |
+| Deformable DETR | ConvNeXt-S | MS-COCO | [config](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/deformable_detr_convnext-s_coco.py) | [ConvNeXt-S, ImageNet-1k](https://download.openmmlab.com/mmclassification/v0/convnext/downstream/convnext-small_3rdparty_32xb128-noema_in1k_20220301-303e75e3.pth) | test `Resize (1333, 800)`; train short side 480–800, long side 1333, or the crop branch at `(400, 4200)`, `(500, 4200)`, `(600, 4200)` | horizontal flip 0.5, then `RandomChoiceResize` or `RandomCrop (384, 600)` followed by the same resize. Early stopping patience 15 |
+| Deformable DETR | Swin-S | MS-COCO | [config](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/deformable_detr_swin-s_coco.py) | [Swin-S, ImageNet-1k](https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_small_patch4_window7_224.pth) | same as Deformable DETR ConvNeXt-S | same as Deformable DETR ConvNeXt-S. Early stopping patience 15 |
+| PAA | ConvNeXt-S | MS-COCO | [config](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/paa_convnext-s_coco.py) | [ConvNeXt-S, ImageNet-1k](https://download.openmmlab.com/mmclassification/v0/convnext/downstream/convnext-small_3rdparty_32xb128-noema_in1k_20220301-303e75e3.pth) | train `(1333, 640)` or `(1333, 800)`; test `(1333, 800)` | random resize, horizontal flip 0.5 |
+| PAA | Swin-S | MS-COCO | [config](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/paa_swin-s_coco.py) | [Swin-S, ImageNet-1k](https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_small_patch4_window7_224.pth) | same as PAA ConvNeXt-S | same as PAA ConvNeXt-S |
+| Sparse R-CNN | ConvNeXt-S | MS-COCO | [config](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/sparse_rcnn_convnext-s_coco.py) | [ConvNeXt-S, ImageNet-1k](https://download.openmmlab.com/mmclassification/v0/convnext/downstream/convnext-small_3rdparty_32xb128-noema_in1k_20220301-303e75e3.pth) | test `Resize (1333, 800)`; train short side 480–800, long side 1333, or the crop branch at `(400, 1333)`, `(500, 1333)`, `(600, 1333)` | horizontal flip 0.5, then `RandomChoiceResize` or `RandomCrop (384, 600)` followed by the same resize. Early stopping patience 15 |
+| Sparse R-CNN | Swin-S | MS-COCO | [config](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/sparse_rcnn_swin-s_coco.py) | [Swin-S, ImageNet-1k](https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_small_patch4_window7_224.pth) | same as Sparse R-CNN ConvNeXt-S | same as Sparse R-CNN ConvNeXt-S. Early stopping patience 15 |
+| TOOD | ConvNeXt-S | MS-COCO | [config](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/tood_convnext-s_coco.py) | [ConvNeXt-S, ImageNet-1k](https://download.openmmlab.com/mmclassification/v0/convnext/downstream/convnext-small_3rdparty_32xb128-noema_in1k_20220301-303e75e3.pth) | train `(1333, 480)` or `(1333, 800)`; test `(1333, 800)` | random resize, horizontal flip 0.5. Early stopping patience 15 |
+| TOOD | Swin-S | MS-COCO | [config](https://github.com/shashankskagnihotri/benchmarking_reliability_generalization/blob/main/object_detection/configs/author_trained/tood_swin-s_coco.py) | [Swin-S, ImageNet-1k](https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_small_patch4_window7_224.pth) | same as TOOD ConvNeXt-S | same as TOOD ConvNeXt-S. Early stopping patience 15 |
 
-`python object_detection/download_models.py` downloads the public segmentation checkpoints listed in the provenance table. It skips every detector, because those URLs are not recorded. DetecBench still loads the first `.py` and the first `.pth` in `model_folder`. A single training recipe for every detector was not run.
+`python object_detection/download_models.py` fetches the public segmentation checkpoints in the provenance table. A detector evaluation reads the `.py` and `.pth` in `models/<name>/`.

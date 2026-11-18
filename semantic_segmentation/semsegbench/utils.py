@@ -43,6 +43,8 @@ def documented_config_path(model_name: str, backbone: str, dataset: str, crop_si
     hits = []
     with table.open(newline="") as handle:
         for row in csv.DictReader(handle):
+            if row.get("task") not in (None, "", "semantic_segmentation"):
+                continue
             if row["architecture"] != model_name or row["backbone"] != backbone or row["dataset"] != dataset:
                 continue
             if crop and row["crop_size"] != crop:

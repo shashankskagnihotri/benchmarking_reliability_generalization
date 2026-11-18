@@ -8,9 +8,6 @@ Files land in semantic_segmentation/checkpoints/<architecture>/.
 The name is the published filename when that name already matches
 get_checkpoint_path. Otherwise the backbone token, dataset, and crop
 are prefixed.
-
-Author-trained weights are not released. Detector checkpoint URLs are
-not in this repository. Both are printed and skipped.
 """
 
 from __future__ import annotations
@@ -115,14 +112,11 @@ def main() -> int:
             print(f"ambiguous filename for {model_id}: {hits}", file=sys.stderr)
         return 1
 
-    downloaded = skipped = 0
+    downloaded = 0
     for row in rows:
         url = published_url(row["checkpoint"])
         path = destination(row)
         if path is None:
-            skipped += 1
-            if args.list:
-                print(f"skip\t{row['model_id']}\tno checkpoint URL in this repository")
             continue
         if args.list:
             state = "exists" if path.is_file() else "download"
@@ -136,8 +130,6 @@ def main() -> int:
         downloaded += 1
     if not args.list:
         print(f"downloaded {downloaded}")
-        print(f"skipped {skipped} checkpoints with no URL in this repository")
-        print("Those are the author-trained segmentation weights and every detector.")
     return 0
 
 

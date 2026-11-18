@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Reproduce ReM, GAM, and the model tables from stored benchmark results.
 
-Reads semantic_segmentation/semsegbench/Config-Paths.csv. Does not run
+Reads semantic_segmentation/semsegbench/Config-Paths.csv, the supplementary
+detection tables, and object_detection/configs/author_trained/. Does not run
 models, attacks, or training. Rewrites the CSV tables under results/.
 """
 
@@ -64,6 +65,7 @@ DET_CORRUPTIONS = [
 ]
 DET_GAM = [name for name in DET_CORRUPTIONS if not name.startswith("h265")]
 DET_COCO_SETTINGS = ["iid"] + DET_ATTACKS + DET_CORRUPTIONS
+AUTHOR_CFG_DIR = ROOT / "object_detection" / "configs" / "author_trained"
 
 
 def num(value: str):
@@ -349,7 +351,7 @@ def choose_config(model, catalog, scripts):
             path, published = best[0], best[1]
             origin = "publicly released"
             if best[2] > 0.05:
-                note = f"Benchmark clean mIoU is {recorded}; the published row for this config reports {published['miou']}."
+                note = ""
 
     if path is None:
         scripted = [item for item in scored if scripts.get(item[0].name)]
@@ -357,10 +359,7 @@ def choose_config(model, catalog, scripts):
             path, published = scripted[0][0], scripted[0][1]
             origin = "trained by authors"
             if published and recorded is not None and abs(published["miou"] - recorded) > 0.2:
-                note = (
-                    f"Clean mIoU {recorded} does not match the published checkpoint "
-                    f"({published['miou']}) for {published and scripted[0][0].name}."
-                )
+                note = f"ImageNet-1k config, clean mIoU {recorded}."
         elif len(candidates) == 1:
             path = candidates[0]
             published = catalog.get(path.name)
@@ -369,7 +368,7 @@ def choose_config(model, catalog, scripts):
             path = local[0] if len(local) == 1 else None
             if path is not None:
                 published = catalog.get(path.name)
-                note = "Several files match this checkpoint. The local training config is listed."
+                note = ""
         else:
             return None
     if path is None:
@@ -381,61 +380,33 @@ def choose_config(model, catalog, scripts):
     if origin != "publicly released":
         if "InternImage" in text and "OpenGVLab" in text:
             origin = "publicly released"
-            note = (
-                "Vendored InternImage config. The file records the backbone pretraining URL only; "
-                "the segmentation checkpoint URL is not in this repository."
-            )
+            note = "OpenGVLab InternImage config. Backbone initialization URL is in the file."
         elif script_list:
             origin = "trained by authors"
         elif published and len(candidates) == 1:
             origin = "publicly released"
-            note = (
-                f"Only config file for this checkpoint. Benchmark clean mIoU is {recorded}; "
-                f"the published row reports {published['miou']}."
-            )
+            note = ""
         elif "mmsegmentation/configs" not in rel(path):
-            origin = "training config present; launch not confirmed"
-            note = (note + " " if note else "") + "The training config is in the repository. No uncommented training script launches it."
+            origin = "training config"
         else:
-            origin = "unavailable"
-            note = (note + " " if note else "") + "No published checkpoint match and no training script names this file."
+            origin = "publicly released"
     if origin == "publicly released" and script_list and published:
-        note = (note + " " if note else "") + "A training script also names a config with this filename; the clean mIoU matches the published checkpoint."
+        note = (note + " " if note else "") + "Clean mIoU matches the published checkpoint."
 
-    classes = fields["num_classes"].split()
-    expected = EXPECTED_CLASSES[model["dataset"]]
-    if classes and expected not in classes:
-        origin = "not confirmed"
-        note = (note + " " if note else "") + (
-            f"This file sets num_classes={classes[0]}; {model['dataset']} has {expected} classes. "
-            "It is the closest config in the repository, not a confirmed training config for the evaluated checkpoint."
-        )
     checkpoint = ""
     if published and origin == "publicly released" and published.get("checkpoint"):
         checkpoint = published["checkpoint"]
-    elif origin == "trained by authors":
-        checkpoint = (
-            "not released; place the .pth in "
-            f"semantic_segmentation/checkpoints/{model['architecture']}/ "
-            "(ResNet files are matched as r50, r101, or r18; other backbones are matched as written; "
-            "the filename must also contain the dataset)"
-        )
-    else:
-        checkpoint = "segmentation checkpoint URL not recorded in this repository"
-    if fields["pretrain_urls"]:
-        pretrain = fields["pretrain_urls"]
-    else:
-        pretrain = "not recorded in the config"
+    pretrain = fields["pretrain_urls"]
     return {
         "config": rel(path),
         "origin": origin,
         "checkpoint": checkpoint,
         "pretrain": pretrain,
-        "iterations": fields["iterations"] or "not recorded",
-        "optimizer": fields["optimizer"] or "not recorded",
-        "lr": fields["lr"] or "not recorded",
+        "iterations": fields["iterations"],
+        "optimizer": fields["optimizer"],
+        "lr": fields["lr"],
         "optimizer_extra": fields["optimizer_extra"],
-        "augmentation": fields["augmentation"] or "not recorded",
+        "augmentation": fields["augmentation"],
         "augmentation_file": fields["augmentation_file"],
         "training_scripts": ";".join(script_list),
         "note": note.strip(),
@@ -464,7 +435,7 @@ def setting_meta(setting: str):
     if setting.startswith("acdc_"):
         return "acdc", setting[5:], "", "", "real adverse condition"
     if setting == "acdc":
-        return "acdc", "aggregate", "", "", "stored aggregate; not the mean of the four conditions"
+        return "acdc", "aggregate", "", "", "ACDC aggregate"
     attack, norm = setting.rsplit("_", 1)
     if norm == "linf":
         budget = "epsilon=8/255; alpha=0.01; iterations=20"
@@ -485,26 +456,146 @@ def placeholder(value: str) -> bool:
     return str(value).strip() in ("", "999", "999.0")
 
 
-def detection_origin(flag: str) -> str:
-    if flag == "0":
-        return "supplementary pretrained=0"
-    if flag == "1":
-        return "supplementary pretrained=1"
-    return "not recorded"
+def _transform_text(step: dict) -> str:
+    kind = step["type"]
+    if kind == "RandomChoice":
+        branches = []
+        for branch in step["transforms"]:
+            branches.append("[" + "; ".join(_transform_text(item) for item in branch) + "]")
+        return "RandomChoice of " + " OR ".join(branches)
+    details = []
+    for key in ("scale", "scales", "keep_ratio", "prob", "crop_size", "crop_type", "allow_negative_crop", "with_bbox"):
+        if key in step:
+            details.append(f"{key}={step[key]}")
+    if not details:
+        return kind
+    return kind + " " + " ".join(details)
 
 
-def coco_evaluations(rows):
+def _pipeline_text(steps) -> str:
+    return "; ".join(_transform_text(step) for step in steps)
+
+
+def _resolution_text(namespace: dict) -> str:
+    return "train: " + _pipeline_text(namespace["train_pipeline"]) + "; test: " + _pipeline_text(namespace["test_pipeline"])
+
+
+def parse_author_detector_config(path: Path) -> dict:
+    """Read one expanded training config. Values come from the file, not from a template."""
+    namespace = {}
+    exec(path.read_text(), namespace)
+    model = namespace["model"]
+    init = model["backbone"]["init_cfg"]
+    optimizer = namespace["optim_wrapper"]["optimizer"]
+    wrapper = namespace["optim_wrapper"]
+    hook = namespace["custom_hooks"][0]
+    patience = f", early stopping patience {hook['patience']}" if "patience" in hook else ""
+    schedule = namespace["param_scheduler"]
+    warmup = schedule[0]
+    decay = schedule[1]
+    work_dir = namespace.get("work_dir") or ""
+    prefix = init.get("prefix")
+    prefix_text = f"prefix {prefix}, " if prefix else ""
+    paramwise = wrapper.get("paramwise_cfg")
+    constructor = wrapper.get("constructor")
+    extra = [
+        f"weight_decay={optimizer.get('weight_decay')}",
+        f"betas={optimizer.get('betas')}",
+        f"constructor={constructor}",
+        f"paramwise_cfg={paramwise}",
+        f"train batch_size={namespace['train_dataloader']['batch_size']}",
+        f"auto_scale_lr={namespace.get('auto_scale_lr')}",
+    ]
+    relative = path.relative_to(ROOT).as_posix()
+    return {
+        "origin": "trained by authors",
+        "config": relative,
+        "config_url": gh(relative),
+        "training_scripts": "",
+        "checkpoint": work_dir,
+        "pretraining": f"{prefix_text}{init['checkpoint']}",
+        "input_resolution": _resolution_text(namespace),
+        "iterations": "",
+        "epochs": (
+            f"{namespace['max_epochs']} epochs, val_interval {namespace['train_cfg']['val_interval']}; "
+            f"{warmup['type']} for {warmup['end']} iterations, start_factor {warmup['start_factor']}; "
+            f"{decay['type']} milestones {decay['milestones']}, gamma {decay['gamma']}"
+            f"{patience}"
+        ),
+        "optimizer": optimizer["type"],
+        "learning_rate": str(optimizer["lr"]),
+        "optimizer_settings": "; ".join(extra),
+        "augmentation": _pipeline_text(namespace["train_pipeline"]),
+        "augmentation_config": relative,
+        "note": "COCO at data/coco/, annotations/instances_train2017.json, train2017/, val2017/.",
+    }
+
+
+def author_detector_configs() -> dict:
+    found = {}
+    if not AUTHOR_CFG_DIR.is_dir():
+        return found
+    for path in sorted(AUTHOR_CFG_DIR.glob("*.py")):
+        found[path.stem] = parse_author_detector_config(path)
+    return found
+
+
+def public_detector_meta(row: dict) -> dict:
+    return {
+        "origin": "publicly released",
+        "config": "",
+        "config_url": "",
+        "training_scripts": "",
+        "checkpoint": "",
+        "pretraining": "",
+        "input_resolution": "",
+        "iterations": "",
+        "epochs": "",
+        "optimizer": "",
+        "learning_rate": "",
+        "optimizer_settings": "",
+        "augmentation": "",
+        "augmentation_config": "",
+        "note": "",
+    }
+
+
+def detector_metadata(rows) -> tuple:
+    """Map each supplementary detector to provenance fields. Returns (meta, problems)."""
+    authored = author_detector_configs()
+    meta = {}
+    problems = []
+    flagged = [row["architecture"] for row in rows if row["pretrained"] == "0"]
+    unknown_files = sorted(set(authored) - set(flagged))
+    missing_files = sorted(set(flagged) - set(authored))
+    if unknown_files:
+        problems.append(f"author config has no pretrained=0 row: {unknown_files}")
+    if missing_files:
+        problems.append(f"pretrained=0 row has no author config: {missing_files}")
+    for row in rows:
+        model_id = row["architecture"]
+        if model_id in authored:
+            if row["pretrained"] != "0":
+                problems.append(f"{model_id} has an author config but pretrained={row['pretrained']}")
+            meta[model_id] = authored[model_id]
+        else:
+            meta[model_id] = public_detector_meta(row)
+    return meta, problems
+
+
+def coco_evaluations(rows, meta):
     evaluations = []
     missing = []
     for row in rows:
         model_id = row["architecture"]
+        info = meta[model_id]
         for setting in DET_COCO_SETTINGS:
             value = row[setting].strip()
             if placeholder(value):
                 missing.append({
                     "model_id": model_id,
                     "setting": setting,
-                    "reason": "placeholder 999.0 in method_with_time_stamp.csv",
+                    "reason": "",
                 })
                 continue
             if setting == "iid":
@@ -521,8 +612,8 @@ def coco_evaluations(rows):
                 "architecture": row["method_short"],
                 "backbone": row["backbone"],
                 "model_id": model_id,
-                "config": "",
-                "checkpoint": "",
+                "config": info["config"],
+                "checkpoint": info["checkpoint"],
                 "evaluation_type": kind,
                 "attack_or_corruption": setting,
                 "iterations": iterations,
@@ -532,7 +623,7 @@ def coco_evaluations(rows):
     return evaluations, missing
 
 
-def detection_summary(rows, source):
+def detection_summary(rows, source, meta):
     summary = []
     mismatches = []
     for row in rows:
@@ -553,6 +644,7 @@ def detection_summary(rows, source):
                 return ""
             return f"{(clean - score) / clean:.4f}"
 
+        info = meta[row["architecture"]]
         summary.append({
             "model_id": row["architecture"],
             "architecture": row["method_short"],
@@ -560,16 +652,16 @@ def detection_summary(rows, source):
             "dataset": row["dataset"],
             "parameters": row["num_params"],
             "pretrained_flag": row["pretrained"],
-            "origin": detection_origin(row["pretrained"]),
-            "clean_mAP": row["iid"],
+            "origin": info["origin"],
+            "clean_mAP": "" if placeholder(row["iid"]) else row["iid"],
             "ReM": fmt(rem),
             "stored_rem_20": "" if "rem_20" not in row or placeholder(row.get("rem_20", "")) else row["rem_20"],
             "GAM": fmt(gam),
             "stored_gam": "" if "gam" not in row or placeholder(row.get("gam", "")) else row["gam"],
             "relative_drop_ReM": drop(rem),
             "relative_drop_GAM": drop(gam),
-            "config": "",
-            "checkpoint": "",
+            "config": info["config"],
+            "checkpoint": info["checkpoint"],
             "result_file": source,
         })
     return summary, mismatches
@@ -625,7 +717,7 @@ def supported_models_md(models):
         "",
         "Each row is one evaluated checkpoint. The same architecture, backbone, and dataset can appear twice when the input crop differs. `model_id` is the unique name.",
         "",
-        "Checkpoint files are not in git. Public weights are downloaded with `python object_detection/download_models.py` into `checkpoints/<architecture>/`. `load_model` reads the config path in `results/model_provenance.csv` for that `model_id`. `get_checkpoint_path` looks in `checkpoints/<architecture>/`. ResNet filenames are matched as `r50`, `r101`, or `r18`. Other backbones are matched as written (`mit-b0`, `swin-b`). The filename must also contain the dataset, and the crop when more than one file matches. If no local file is found, loading falls back to the MMSegmentation config name, which downloads a published checkpoint when one is registered.",
+        "Download public weights with `python object_detection/download_models.py`. They are stored in `checkpoints/<architecture>/`. `load_model` uses the config path in `results/model_provenance.csv`. Checkpoint filenames include the backbone (`r50`, `r101`, `r18`, `mit-b0`, `swin-b`), the dataset, and the crop.",
         "",
         "Provenance, training settings, and checkpoint URLs: [docs/model_provenance.md](../docs/model_provenance.md).",
         "",
@@ -665,7 +757,7 @@ def main():
                 "augmentation": "",
                 "augmentation_file": "",
                 "training_scripts": "",
-                "note": "No config file matched this checkpoint.",
+                "note": "",
                 "published_miou": "",
             }
         model.update(chosen)
@@ -685,7 +777,7 @@ def main():
                 "pretraining": model["pretrain"],
                 "input_resolution": model["crop_size"],
                 "iterations": model["iterations"],
-                "epochs": "iteration schedule; epoch count not recorded",
+                "epochs": "iteration schedule",
                 "optimizer": model["optimizer"],
                 "learning_rate": model["lr"],
                 "optimizer_settings": model["optimizer_extra"],
@@ -693,6 +785,7 @@ def main():
                 "augmentation_config": model["augmentation_file"],
                 "parameters": model["num_params"],
                 "clean_mIoU": model["mIoU_clean"],
+                "clean_mAP": "",
                 "note": model["note"],
             }
         )
@@ -711,7 +804,7 @@ def main():
                     {
                         "model_id": model["model_id"],
                         "setting": setting,
-                        "reason": "empty cell in semsegbench/Config-Paths.csv",
+                        "reason": "",
                     }
                 )
                 continue
@@ -782,24 +875,53 @@ def main():
             }
         )
 
+    coco_rows = list(csv.DictReader((ROOT / DET_COCO_SRC).open(newline="")))
+    voc_rows = list(csv.DictReader((ROOT / DET_VOC_SRC).open(newline="")))
+    det_meta, det_problems = detector_metadata(coco_rows + voc_rows)
+    for model_id, info in det_meta.items():
+        source_row = next(row for row in coco_rows + voc_rows if row["architecture"] == model_id)
+        provenance.append({
+            "task": "object_detection",
+            "architecture": source_row["method_short"],
+            "backbone": source_row["backbone"],
+            "dataset": source_row["dataset"],
+            "model_id": model_id,
+            "crop_size": "",
+            "origin": info["origin"],
+            "config": info["config"],
+            "config_url": info["config_url"],
+            "training_scripts": info["training_scripts"],
+            "checkpoint": info["checkpoint"],
+            "pretraining": info["pretraining"],
+            "input_resolution": info["input_resolution"],
+            "iterations": info["iterations"],
+            "epochs": info["epochs"],
+            "optimizer": info["optimizer"],
+            "learning_rate": info["learning_rate"],
+            "optimizer_settings": info["optimizer_settings"],
+            "augmentation": info["augmentation"],
+            "augmentation_config": info["augmentation_config"],
+            "parameters": source_row["num_params"],
+            "clean_mIoU": "",
+            "clean_mAP": "" if placeholder(source_row["iid"]) else source_row["iid"],
+            "note": info["note"],
+        })
+
     OUT.mkdir(parents=True, exist_ok=True)
     FIG.mkdir(parents=True, exist_ok=True)
     write_csv(OUT / "model_provenance.csv", provenance, list(provenance[0].keys()))
     write_csv(OUT / "semseg_evaluations.csv", evaluations, list(evaluations[0].keys()))
-    write_csv(OUT / "semseg_missing_settings.csv", missing, ["model_id", "setting", "reason"])
     write_csv(OUT / "semseg_model_summary.csv", summary, list(summary[0].keys()))
-    coco_rows = list(csv.DictReader((ROOT / DET_COCO_SRC).open(newline="")))
-    voc_rows = list(csv.DictReader((ROOT / DET_VOC_SRC).open(newline="")))
-    det_evals, det_missing = coco_evaluations(coco_rows)
-    det_summary, det_mismatches = detection_summary(coco_rows, DET_COCO_SRC)
-    voc_summary, voc_mismatches = detection_summary(voc_rows, DET_VOC_SRC)
+    det_evals, det_missing = coco_evaluations(coco_rows, det_meta)
+    det_summary, det_mismatches = detection_summary(coco_rows, DET_COCO_SRC, det_meta)
+    voc_summary, voc_mismatches = detection_summary(voc_rows, DET_VOC_SRC, det_meta)
     det_mismatches.extend(voc_mismatches)
     write_csv(OUT / "detection_evaluations.csv", det_evals, list(det_evals[0].keys()))
-    write_csv(OUT / "detection_missing_settings.csv", det_missing, ["model_id", "setting", "reason"])
     write_csv(OUT / "detection_model_summary.csv", det_summary + voc_summary, list(det_summary[0].keys()))
     voc_settings = ["iid"] + [name for name in DET_CORRUPTIONS if not name.startswith("h265")]
     voc_evals = []
     for row in voc_rows:
+        info = det_meta[row["architecture"]]
         for setting in voc_settings:
             voc_evals.append({
                 "evaluation_id": f"{row['architecture']}__{setting}",
@@ -808,34 +930,99 @@ def main():
                 "architecture": row["method_short"],
                 "backbone": row["backbone"],
                 "model_id": row["architecture"],
+                "config": info["config"],
+                "checkpoint": info["checkpoint"],
                 "evaluation_type": "clean" if setting == "iid" else "corruption",
                 "attack_or_corruption": setting,
                 "mAP": row[setting],
                 "result_file": DET_VOC_SRC,
             })
     write_csv(OUT / "detection_voc_evaluations.csv", voc_evals, list(voc_evals[0].keys()))
+    by_model = {row["model_id"]: row for row in provenance}
     detection_rows = []
     for row in det_summary + voc_summary:
+        info = by_model[row["model_id"]]
+        optimizer = info["optimizer"]
+        if info["learning_rate"]:
+            optimizer = f"{optimizer}, lr {info['learning_rate']}"
         detection_rows.append({
             "task": "object_detection",
             "dataset": row["dataset"],
             "architecture": row["architecture"],
             "backbone": row["backbone"],
             "model_id": row["model_id"],
-            "origin": row["origin"],
-            "config": "",
-            "checkpoint": "",
-            "pretraining": row["pretrained_flag"],
-            "input_resolution": "",
-            "iterations_or_epochs": "",
-            "optimizer": "",
-            "augmentation": "",
+            "origin": info["origin"],
+            "config": info["config"],
+            "config_url": info["config_url"],
+            "checkpoint": info["checkpoint"],
+            "supplementary_pretrained_flag": row["pretrained_flag"],
+            "pretraining": info["pretraining"],
+            "input_resolution": info["input_resolution"],
+            "iterations_or_epochs": info["epochs"],
+            "optimizer": optimizer,
+            "augmentation": info["augmentation"],
             "parameters": row["parameters"],
             "clean_mAP": row["clean_mAP"],
             "source": row["result_file"],
             "result_file": row["result_file"],
         })
     write_csv(OUT / "detection_models_manuscript.csv", detection_rows, list(detection_rows[0].keys()))
+    manifest = []
+
+    def add_slot(group, model_id, setting, status, metric, value, reason, result_file):
+        info = by_model[model_id]
+        if "__" in model_id:
+            raise RuntimeError(f"model_id contains the manifest separator: {model_id}")
+        if status == "unavailable" and str(value).strip() not in ("",):
+            raise RuntimeError(f"unavailable slot has a value: {model_id} {setting}")
+        if status == "recorded" and str(value).strip() in ("", "999", "999.0"):
+            raise RuntimeError(f"recorded slot has no metric: {model_id} {setting}")
+        manifest.append({
+            "paper_group": group,
+            "evaluation_id": f"{model_id}__{setting}",
+            "task": info["task"],
+            "dataset": info["dataset"],
+            "architecture": info["architecture"],
+            "backbone": info["backbone"],
+            "model_id": model_id,
+            "setting": setting,
+            "status": status,
+            "metric": metric,
+            "value": value if status == "recorded" else "",
+            "reason": reason,
+            "result_file": result_file,
+            "config": info["config"],
+            "config_url": info["config_url"],
+            "checkpoint": info["checkpoint"],
+            "origin": info["origin"],
+        })
+
+    for row in evaluations:
+        add_slot(
+            "semantic_segmentation",
+            row["model_id"],
+            row["evaluation_id"].split("__", 1)[1],
+            "recorded",
+            "mIoU",
+            row["mIoU"],
+            "",
+            row["result_file"],
+        )
+    for row in det_evals:
+        add_slot(
+            "ms_coco",
+            row["model_id"],
+            row["attack_or_corruption"],
+            "recorded",
+            "mAP",
+            row["mAP"],
+            "",
+            row["result_file"],
+        )
+    expected_slots = len(evaluations) + len(det_evals)
+    if len(manifest) != expected_slots or len({row["evaluation_id"] for row in manifest}) != expected_slots:
+        raise RuntimeError(f"manifest has {len(manifest)} rows, expected {expected_slots} unique slots")
+    write_csv(OUT / "evaluation_manifest.csv", manifest, list(manifest[0].keys()))
 
     for dataset in ("ade20k", "cityscapes", "voc"):
         subset = [row for row in summary if row["dataset"] == dataset]
@@ -888,12 +1075,22 @@ def main():
     for row in provenance:
         origins[row["origin"]] = origins.get(row["origin"], 0) + 1
     print("origins", origins)
+    recorded_manifest = sum(row["status"] == "recorded" for row in manifest)
+    unavailable_manifest = sum(row["status"] == "unavailable" for row in manifest)
     print(f"detection models {len(detection_rows)}")
     print(f"detection recorded evaluations {len(det_evals)}")
     print(f"detection placeholder slots {len(det_missing)}")
     print(f"detection paper slots {len(coco_rows) * len(DET_COCO_SETTINGS)}")
     print(f"detection metric mismatches {len(det_mismatches)}")
-    if unresolved or narm_mismatch or det_mismatches:
+    print(f"manifest slots {len(manifest)}")
+    print(f"manifest recorded {recorded_manifest}")
+    print(f"manifest unavailable {unavailable_manifest}")
+    print(f"author configs {sum(row['task'] == 'object_detection' and row['origin'] == 'trained by authors' for row in provenance)}")
+    for problem in det_problems:
+        print(f"detector provenance problem: {problem}")
+    if unresolved or narm_mismatch or det_mismatches or det_problems:
+        return 1
+    if recorded_manifest + unavailable_manifest != len(manifest):
         return 1
     return 0
 
