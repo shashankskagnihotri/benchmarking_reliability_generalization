@@ -5,7 +5,8 @@ set -euo pipefail
 REPO=/ceph/sagnihot/projects/IJCV_github_repo/benchmarking_reliability_generalization
 cd "$REPO"
 source /ceph/sagnihot/miniconda3/etc/profile.d/conda.sh
-ENV_NAME=$(PYTHONPATH="$REPO/semantic_segmentation" python - << 'PY'
+PYBIN=/ceph/sagnihot/miniconda3/bin/python
+ENV_NAME=$(PYTHONPATH="$REPO/semantic_segmentation" "$PYBIN" - << 'PY'
 import os
 from semsegbench.vlseg.manifest import experiment_for
 spec = experiment_for(os.environ["VLSEG_GROUP"], int(os.environ["SLURM_ARRAY_TASK_ID"]))
@@ -21,4 +22,7 @@ print(envs[spec["model_key"]])
 PY
 )
 conda activate "$ENV_NAME"
+# Stock mmengine 0.10.6. The shared OpenMMLab env points at a RAW-image
+# fork of mmengine that adds parameters absent from these checkpoints.
+export PYTHONPATH="$REPO/semantic_segmentation/.vlseg_py:$REPO/semantic_segmentation/mmsegmentation:$REPO/semantic_segmentation${PYTHONPATH:+:$PYTHONPATH}"
 echo "environment ${ENV_NAME}"

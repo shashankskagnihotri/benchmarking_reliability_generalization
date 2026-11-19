@@ -37,7 +37,7 @@ Cityscapes and ACDC use the same class order, names, and templates for a given m
 
 ## Attacks
 
-Attacks are untargeted and white-box, for 20 iterations, on ADE20K only. They call `cospgd` `init_linf` / `init_l2` and `step_inf` / `step_l2`, and they use the SemSegBench SegPGD and CosPGD pixel weights. The loss is per-pixel cross-entropy on the dataset-class scores, with ignore index 255.
+Attacks are untargeted and white-box, for 20 iterations, on ADE20K only. They call `cospgd` `init_linf` / `init_l2` and `step_inf` / `step_l2`, and they use the SemSegBench SegPGD and CosPGD pixel weights. The loss is per-pixel cross-entropy on the dataset-class scores, with ignore index 255. SAN's official score is the fused map from `predict_by_feat` (class softmax, background dropped, times sigmoid masks). Pixel cross-entropy is applied to that tensor.
 
 The attacked tensor is RGB float in `[0, 255]`. Linf uses epsilon 8 and step 2.55. L2 uses epsilon 64 on the full per-image perturbation and step 25.5. These are the benchmark configuration values `epsilon=8, alpha=0.01` and `epsilon=64, alpha=0.1` after the `[0, 255]` conversion in `EncoderDecoder.predict`. The scale is not inferred from `tensor.max()`.
 
@@ -52,6 +52,12 @@ All 15 `imagecorruptions` corruptions are evaluated at severity 3 on ADE20K and 
 ## Metrics
 
 mIoU, mAcc, and aAcc are percentages, rounded to two decimals as in `IoUMetric`. For ADE20K, `ReM_Linf` is the minimum of PGD, SegPGD, and CosPGD under Linf, and `ReM_L2` is the same minimum under L2. `GAM_3` is the minimum mIoU across the 15 severity-3 corruptions, computed separately for ADE20K and Cityscapes. These summaries are not extra inference runs.
+
+## Environment
+
+`scripts/vision_language_semseg/activate_task.sh` puts `semantic_segmentation/.vlseg_py` and this repository's `mmsegmentation` on `PYTHONPATH`. That directory holds stock mmengine 0.10.6. The shared OpenMMLab environment imports a RAW-image fork of mmengine, and that fork adds parameters that are not in these checkpoints, so it is not used for this extension.
+
+The official SAN checkpoint loads with `strict=True` under that stock mmengine: 436,674,995 parameters, 150 ADE20K output channels, and frozen weights. A CPU forward and backward on a 128×128 tensor produced finite, nonzero image gradients. Full validation evaluations have not been run.
 
 ## Reproduction
 

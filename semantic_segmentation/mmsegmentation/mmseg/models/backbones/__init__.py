@@ -24,8 +24,14 @@ from .twins import PCPVT, SVT
 from .unet import UNet
 from .vit import VisionTransformer
 from .vpd import VPD
-from .intern_image import InternImage
-from .onepeace_adapter import OnePeaceAdapter
+try:
+    from .intern_image import InternImage
+except ImportError:
+    InternImage = None
+try:
+    from .onepeace_adapter import OnePeaceAdapter
+except ImportError:
+    OnePeaceAdapter = None
 
 __all__ = [
     'ResNet', 'ResNetV1c', 'ResNetV1d', 'ResNeXt', 'HRNet', 'FastSCNN',
