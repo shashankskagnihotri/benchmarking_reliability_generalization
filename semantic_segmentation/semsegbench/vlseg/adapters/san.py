@@ -41,10 +41,28 @@ def _short_edge(height, width, scale=640, max_size=2560):
 class SANSegmentor:
     def __init__(self, spec, device):
         import sys
+        import types
+        # InternImage imports the compiled DCNv3 op at package import.
+        # SAN does not call it. A missing extension must fail if used.
+        def _unused_cuda_op(name):
+            def _call(*_args, **_kwargs):
+                raise RuntimeError(f"{name} is not built. SAN does not use it.")
+            return _call
+
+        if "DCNv3" not in sys.modules:
+            stub = types.ModuleType("DCNv3")
+            stub.dcnv3_forward = _unused_cuda_op("DCNv3")
+            stub.dcnv3_backward = _unused_cuda_op("DCNv3")
+            sys.modules["DCNv3"] = stub
+        if "MultiScaleDeformableAttention" not in sys.modules:
+            stub = types.ModuleType("MultiScaleDeformableAttention")
+            stub.ms_deform_attn_forward = _unused_cuda_op("MultiScaleDeformableAttention")
+            stub.ms_deform_attn_backward = _unused_cuda_op("MultiScaleDeformableAttention")
+            sys.modules["MultiScaleDeformableAttention"] = stub
         sys.path.insert(0, str(MMSEG_ROOT))
         from mmengine.config import Config
         from mmengine.registry import init_default_scope
-        from mmengine.runner.checkpoint import load_checkpoint
+        from mmengine.runner.checkpoint import _load_checkpoint_to_model
         from mmseg.registry import MODELS
 
         init_default_scope("mmseg")
@@ -54,7 +72,10 @@ class SANSegmentor:
         cfg.model.text_encoder.vocabulary = nouns
         cfg.model.pretrained = None
         model = MODELS.build(cfg.model)
-        load_checkpoint(model, str(CHECKPOINT), map_location="cpu", strict=True)
+        # The OpenMMLab release stores numpy metadata, which torch 2.6+
+        # refuses under weights_only=True.
+        checkpoint = torch.load(str(CHECKPOINT), map_location="cpu", weights_only=False)
+        _load_checkpoint_to_model(model, checkpoint, strict=True)
         model.eval()
         self.model = model.to(device)
         self.device = device
