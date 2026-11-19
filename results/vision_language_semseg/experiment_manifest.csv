@@ -1,0 +1,259 @@
+experiment_id,array_group,array_index,model,model_key,variant,backbone,checkpoint,dataset,split,condition,evaluation_type,setting,attack,corruption,severity,norm,epsilon,alpha,iterations,num_classes
+san__ade20k__clean,clean,0,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,clean,clean,,,,,,,,150
+san__cityscapes__clean,clean,1,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,cityscapes,validation,,clean,clean,,,,,,,,19
+san__ade20k__PGD_Linf,adversarial,0,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,adversarial,PGD_Linf,PGD,,,Linf,8.0,0.01,20,150
+san__ade20k__SegPGD_Linf,adversarial,1,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,adversarial,SegPGD_Linf,SegPGD,,,Linf,8.0,0.01,20,150
+san__ade20k__CosPGD_Linf,adversarial,2,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,adversarial,CosPGD_Linf,CosPGD,,,Linf,8.0,0.01,20,150
+san__ade20k__PGD_L2,adversarial,3,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,adversarial,PGD_L2,PGD,,,L2,64.0,0.1,20,150
+san__ade20k__SegPGD_L2,adversarial,4,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,adversarial,SegPGD_L2,SegPGD,,,L2,64.0,0.1,20,150
+san__ade20k__CosPGD_L2,adversarial,5,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,adversarial,CosPGD_L2,CosPGD,,,L2,64.0,0.1,20,150
+san__ade20k__gaussian_noise,corruptions,0,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,corruption,gaussian_noise,,gaussian_noise,3,,,,,150
+san__ade20k__shot_noise,corruptions,1,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,corruption,shot_noise,,shot_noise,3,,,,,150
+san__ade20k__impulse_noise,corruptions,2,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,corruption,impulse_noise,,impulse_noise,3,,,,,150
+san__ade20k__defocus_blur,corruptions,3,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,corruption,defocus_blur,,defocus_blur,3,,,,,150
+san__ade20k__glass_blur,corruptions,4,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,corruption,glass_blur,,glass_blur,3,,,,,150
+san__ade20k__motion_blur,corruptions,5,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,corruption,motion_blur,,motion_blur,3,,,,,150
+san__ade20k__zoom_blur,corruptions,6,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,corruption,zoom_blur,,zoom_blur,3,,,,,150
+san__ade20k__snow,corruptions,7,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,corruption,snow,,snow,3,,,,,150
+san__ade20k__frost,corruptions,8,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,corruption,frost,,frost,3,,,,,150
+san__ade20k__fog,corruptions,9,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,corruption,fog,,fog,3,,,,,150
+san__ade20k__brightness,corruptions,10,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,corruption,brightness,,brightness,3,,,,,150
+san__ade20k__contrast,corruptions,11,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,corruption,contrast,,contrast,3,,,,,150
+san__ade20k__elastic_transform,corruptions,12,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,corruption,elastic_transform,,elastic_transform,3,,,,,150
+san__ade20k__pixelate,corruptions,13,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,corruption,pixelate,,pixelate,3,,,,,150
+san__ade20k__jpeg_compression,corruptions,14,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,ade20k,validation,,corruption,jpeg_compression,,jpeg_compression,3,,,,,150
+san__cityscapes__gaussian_noise,corruptions,15,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,cityscapes,validation,,corruption,gaussian_noise,,gaussian_noise,3,,,,,19
+san__cityscapes__shot_noise,corruptions,16,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,cityscapes,validation,,corruption,shot_noise,,shot_noise,3,,,,,19
+san__cityscapes__impulse_noise,corruptions,17,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,cityscapes,validation,,corruption,impulse_noise,,impulse_noise,3,,,,,19
+san__cityscapes__defocus_blur,corruptions,18,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,cityscapes,validation,,corruption,defocus_blur,,defocus_blur,3,,,,,19
+san__cityscapes__glass_blur,corruptions,19,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,cityscapes,validation,,corruption,glass_blur,,glass_blur,3,,,,,19
+san__cityscapes__motion_blur,corruptions,20,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,cityscapes,validation,,corruption,motion_blur,,motion_blur,3,,,,,19
+san__cityscapes__zoom_blur,corruptions,21,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,cityscapes,validation,,corruption,zoom_blur,,zoom_blur,3,,,,,19
+san__cityscapes__snow,corruptions,22,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,cityscapes,validation,,corruption,snow,,snow,3,,,,,19
+san__cityscapes__frost,corruptions,23,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,cityscapes,validation,,corruption,frost,,frost,3,,,,,19
+san__cityscapes__fog,corruptions,24,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,cityscapes,validation,,corruption,fog,,fog,3,,,,,19
+san__cityscapes__brightness,corruptions,25,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,cityscapes,validation,,corruption,brightness,,brightness,3,,,,,19
+san__cityscapes__contrast,corruptions,26,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,cityscapes,validation,,corruption,contrast,,contrast,3,,,,,19
+san__cityscapes__elastic_transform,corruptions,27,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,cityscapes,validation,,corruption,elastic_transform,,elastic_transform,3,,,,,19
+san__cityscapes__pixelate,corruptions,28,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,cityscapes,validation,,corruption,pixelate,,pixelate,3,,,,,19
+san__cityscapes__jpeg_compression,corruptions,29,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,cityscapes,validation,,corruption,jpeg_compression,,jpeg_compression,3,,,,,19
+san__acdc__fog,acdc,0,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,acdc,validation,fog,acdc,fog,,,,,,,,19
+san__acdc__night,acdc,1,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,acdc,validation,night,acdc,night,,,,,,,,19
+san__acdc__rain,acdc,2,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,acdc,validation,rain,acdc,rain,,,,,,,,19
+san__acdc__snow,acdc,3,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,acdc,validation,snow,acdc,snow,,,,,,,,19
+san__acdc__aggregate,acdc,4,SAN,san,san-vit-l14_coco-stuff164k-640x640,CLIP ViT-L/14,san-vit-l14_20230907-a11e098f.pth,acdc,validation,aggregate,acdc,aggregate,,,,,,,,19
+catseg__ade20k__clean,clean,2,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,clean,clean,,,,,,,,150
+catseg__cityscapes__clean,clean,3,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,cityscapes,validation,,clean,clean,,,,,,,,19
+catseg__ade20k__PGD_Linf,adversarial,6,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,adversarial,PGD_Linf,PGD,,,Linf,8.0,0.01,20,150
+catseg__ade20k__SegPGD_Linf,adversarial,7,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,adversarial,SegPGD_Linf,SegPGD,,,Linf,8.0,0.01,20,150
+catseg__ade20k__CosPGD_Linf,adversarial,8,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,adversarial,CosPGD_Linf,CosPGD,,,Linf,8.0,0.01,20,150
+catseg__ade20k__PGD_L2,adversarial,9,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,adversarial,PGD_L2,PGD,,,L2,64.0,0.1,20,150
+catseg__ade20k__SegPGD_L2,adversarial,10,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,adversarial,SegPGD_L2,SegPGD,,,L2,64.0,0.1,20,150
+catseg__ade20k__CosPGD_L2,adversarial,11,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,adversarial,CosPGD_L2,CosPGD,,,L2,64.0,0.1,20,150
+catseg__ade20k__gaussian_noise,corruptions,30,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,corruption,gaussian_noise,,gaussian_noise,3,,,,,150
+catseg__ade20k__shot_noise,corruptions,31,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,corruption,shot_noise,,shot_noise,3,,,,,150
+catseg__ade20k__impulse_noise,corruptions,32,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,corruption,impulse_noise,,impulse_noise,3,,,,,150
+catseg__ade20k__defocus_blur,corruptions,33,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,corruption,defocus_blur,,defocus_blur,3,,,,,150
+catseg__ade20k__glass_blur,corruptions,34,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,corruption,glass_blur,,glass_blur,3,,,,,150
+catseg__ade20k__motion_blur,corruptions,35,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,corruption,motion_blur,,motion_blur,3,,,,,150
+catseg__ade20k__zoom_blur,corruptions,36,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,corruption,zoom_blur,,zoom_blur,3,,,,,150
+catseg__ade20k__snow,corruptions,37,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,corruption,snow,,snow,3,,,,,150
+catseg__ade20k__frost,corruptions,38,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,corruption,frost,,frost,3,,,,,150
+catseg__ade20k__fog,corruptions,39,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,corruption,fog,,fog,3,,,,,150
+catseg__ade20k__brightness,corruptions,40,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,corruption,brightness,,brightness,3,,,,,150
+catseg__ade20k__contrast,corruptions,41,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,corruption,contrast,,contrast,3,,,,,150
+catseg__ade20k__elastic_transform,corruptions,42,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,corruption,elastic_transform,,elastic_transform,3,,,,,150
+catseg__ade20k__pixelate,corruptions,43,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,corruption,pixelate,,pixelate,3,,,,,150
+catseg__ade20k__jpeg_compression,corruptions,44,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,ade20k,validation,,corruption,jpeg_compression,,jpeg_compression,3,,,,,150
+catseg__cityscapes__gaussian_noise,corruptions,45,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,cityscapes,validation,,corruption,gaussian_noise,,gaussian_noise,3,,,,,19
+catseg__cityscapes__shot_noise,corruptions,46,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,cityscapes,validation,,corruption,shot_noise,,shot_noise,3,,,,,19
+catseg__cityscapes__impulse_noise,corruptions,47,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,cityscapes,validation,,corruption,impulse_noise,,impulse_noise,3,,,,,19
+catseg__cityscapes__defocus_blur,corruptions,48,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,cityscapes,validation,,corruption,defocus_blur,,defocus_blur,3,,,,,19
+catseg__cityscapes__glass_blur,corruptions,49,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,cityscapes,validation,,corruption,glass_blur,,glass_blur,3,,,,,19
+catseg__cityscapes__motion_blur,corruptions,50,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,cityscapes,validation,,corruption,motion_blur,,motion_blur,3,,,,,19
+catseg__cityscapes__zoom_blur,corruptions,51,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,cityscapes,validation,,corruption,zoom_blur,,zoom_blur,3,,,,,19
+catseg__cityscapes__snow,corruptions,52,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,cityscapes,validation,,corruption,snow,,snow,3,,,,,19
+catseg__cityscapes__frost,corruptions,53,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,cityscapes,validation,,corruption,frost,,frost,3,,,,,19
+catseg__cityscapes__fog,corruptions,54,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,cityscapes,validation,,corruption,fog,,fog,3,,,,,19
+catseg__cityscapes__brightness,corruptions,55,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,cityscapes,validation,,corruption,brightness,,brightness,3,,,,,19
+catseg__cityscapes__contrast,corruptions,56,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,cityscapes,validation,,corruption,contrast,,contrast,3,,,,,19
+catseg__cityscapes__elastic_transform,corruptions,57,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,cityscapes,validation,,corruption,elastic_transform,,elastic_transform,3,,,,,19
+catseg__cityscapes__pixelate,corruptions,58,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,cityscapes,validation,,corruption,pixelate,,pixelate,3,,,,,19
+catseg__cityscapes__jpeg_compression,corruptions,59,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,cityscapes,validation,,corruption,jpeg_compression,,jpeg_compression,3,,,,,19
+catseg__acdc__fog,acdc,5,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,acdc,validation,fog,acdc,fog,,,,,,,,19
+catseg__acdc__night,acdc,6,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,acdc,validation,night,acdc,night,,,,,,,,19
+catseg__acdc__rain,acdc,7,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,acdc,validation,rain,acdc,rain,,,,,,,,19
+catseg__acdc__snow,acdc,8,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,acdc,validation,snow,acdc,snow,,,,,,,,19
+catseg__acdc__aggregate,acdc,9,CAT-Seg,catseg,CAT-Seg (L),CLIP ViT-L/14@336px,catseg_l_model_large.pth,acdc,validation,aggregate,acdc,aggregate,,,,,,,,19
+sed__ade20k__clean,clean,4,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,clean,clean,,,,,,,,150
+sed__cityscapes__clean,clean,5,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,cityscapes,validation,,clean,clean,,,,,,,,19
+sed__ade20k__PGD_Linf,adversarial,12,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,adversarial,PGD_Linf,PGD,,,Linf,8.0,0.01,20,150
+sed__ade20k__SegPGD_Linf,adversarial,13,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,adversarial,SegPGD_Linf,SegPGD,,,Linf,8.0,0.01,20,150
+sed__ade20k__CosPGD_Linf,adversarial,14,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,adversarial,CosPGD_Linf,CosPGD,,,Linf,8.0,0.01,20,150
+sed__ade20k__PGD_L2,adversarial,15,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,adversarial,PGD_L2,PGD,,,L2,64.0,0.1,20,150
+sed__ade20k__SegPGD_L2,adversarial,16,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,adversarial,SegPGD_L2,SegPGD,,,L2,64.0,0.1,20,150
+sed__ade20k__CosPGD_L2,adversarial,17,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,adversarial,CosPGD_L2,CosPGD,,,L2,64.0,0.1,20,150
+sed__ade20k__gaussian_noise,corruptions,60,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,corruption,gaussian_noise,,gaussian_noise,3,,,,,150
+sed__ade20k__shot_noise,corruptions,61,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,corruption,shot_noise,,shot_noise,3,,,,,150
+sed__ade20k__impulse_noise,corruptions,62,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,corruption,impulse_noise,,impulse_noise,3,,,,,150
+sed__ade20k__defocus_blur,corruptions,63,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,corruption,defocus_blur,,defocus_blur,3,,,,,150
+sed__ade20k__glass_blur,corruptions,64,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,corruption,glass_blur,,glass_blur,3,,,,,150
+sed__ade20k__motion_blur,corruptions,65,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,corruption,motion_blur,,motion_blur,3,,,,,150
+sed__ade20k__zoom_blur,corruptions,66,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,corruption,zoom_blur,,zoom_blur,3,,,,,150
+sed__ade20k__snow,corruptions,67,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,corruption,snow,,snow,3,,,,,150
+sed__ade20k__frost,corruptions,68,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,corruption,frost,,frost,3,,,,,150
+sed__ade20k__fog,corruptions,69,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,corruption,fog,,fog,3,,,,,150
+sed__ade20k__brightness,corruptions,70,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,corruption,brightness,,brightness,3,,,,,150
+sed__ade20k__contrast,corruptions,71,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,corruption,contrast,,contrast,3,,,,,150
+sed__ade20k__elastic_transform,corruptions,72,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,corruption,elastic_transform,,elastic_transform,3,,,,,150
+sed__ade20k__pixelate,corruptions,73,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,corruption,pixelate,,pixelate,3,,,,,150
+sed__ade20k__jpeg_compression,corruptions,74,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,ade20k,validation,,corruption,jpeg_compression,,jpeg_compression,3,,,,,150
+sed__cityscapes__gaussian_noise,corruptions,75,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,cityscapes,validation,,corruption,gaussian_noise,,gaussian_noise,3,,,,,19
+sed__cityscapes__shot_noise,corruptions,76,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,cityscapes,validation,,corruption,shot_noise,,shot_noise,3,,,,,19
+sed__cityscapes__impulse_noise,corruptions,77,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,cityscapes,validation,,corruption,impulse_noise,,impulse_noise,3,,,,,19
+sed__cityscapes__defocus_blur,corruptions,78,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,cityscapes,validation,,corruption,defocus_blur,,defocus_blur,3,,,,,19
+sed__cityscapes__glass_blur,corruptions,79,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,cityscapes,validation,,corruption,glass_blur,,glass_blur,3,,,,,19
+sed__cityscapes__motion_blur,corruptions,80,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,cityscapes,validation,,corruption,motion_blur,,motion_blur,3,,,,,19
+sed__cityscapes__zoom_blur,corruptions,81,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,cityscapes,validation,,corruption,zoom_blur,,zoom_blur,3,,,,,19
+sed__cityscapes__snow,corruptions,82,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,cityscapes,validation,,corruption,snow,,snow,3,,,,,19
+sed__cityscapes__frost,corruptions,83,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,cityscapes,validation,,corruption,frost,,frost,3,,,,,19
+sed__cityscapes__fog,corruptions,84,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,cityscapes,validation,,corruption,fog,,fog,3,,,,,19
+sed__cityscapes__brightness,corruptions,85,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,cityscapes,validation,,corruption,brightness,,brightness,3,,,,,19
+sed__cityscapes__contrast,corruptions,86,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,cityscapes,validation,,corruption,contrast,,contrast,3,,,,,19
+sed__cityscapes__elastic_transform,corruptions,87,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,cityscapes,validation,,corruption,elastic_transform,,elastic_transform,3,,,,,19
+sed__cityscapes__pixelate,corruptions,88,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,cityscapes,validation,,corruption,pixelate,,pixelate,3,,,,,19
+sed__cityscapes__jpeg_compression,corruptions,89,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,cityscapes,validation,,corruption,jpeg_compression,,jpeg_compression,3,,,,,19
+sed__acdc__fog,acdc,10,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,acdc,validation,fog,acdc,fog,,,,,,,,19
+sed__acdc__night,acdc,11,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,acdc,validation,night,acdc,night,,,,,,,,19
+sed__acdc__rain,acdc,12,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,acdc,validation,rain,acdc,rain,,,,,,,,19
+sed__acdc__snow,acdc,13,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,acdc,validation,snow,acdc,snow,,,,,,,,19
+sed__acdc__aggregate,acdc,14,SED,sed,SED (L),ConvNeXt-L,sed_l.pth,acdc,validation,aggregate,acdc,aggregate,,,,,,,,19
+fcclip__ade20k__clean,clean,6,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,clean,clean,,,,,,,,150
+fcclip__cityscapes__clean,clean,7,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),cityscapes,validation,,clean,clean,,,,,,,,19
+fcclip__ade20k__PGD_Linf,adversarial,18,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,adversarial,PGD_Linf,PGD,,,Linf,8.0,0.01,20,150
+fcclip__ade20k__SegPGD_Linf,adversarial,19,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,adversarial,SegPGD_Linf,SegPGD,,,Linf,8.0,0.01,20,150
+fcclip__ade20k__CosPGD_Linf,adversarial,20,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,adversarial,CosPGD_Linf,CosPGD,,,Linf,8.0,0.01,20,150
+fcclip__ade20k__PGD_L2,adversarial,21,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,adversarial,PGD_L2,PGD,,,L2,64.0,0.1,20,150
+fcclip__ade20k__SegPGD_L2,adversarial,22,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,adversarial,SegPGD_L2,SegPGD,,,L2,64.0,0.1,20,150
+fcclip__ade20k__CosPGD_L2,adversarial,23,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,adversarial,CosPGD_L2,CosPGD,,,L2,64.0,0.1,20,150
+fcclip__ade20k__gaussian_noise,corruptions,90,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,corruption,gaussian_noise,,gaussian_noise,3,,,,,150
+fcclip__ade20k__shot_noise,corruptions,91,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,corruption,shot_noise,,shot_noise,3,,,,,150
+fcclip__ade20k__impulse_noise,corruptions,92,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,corruption,impulse_noise,,impulse_noise,3,,,,,150
+fcclip__ade20k__defocus_blur,corruptions,93,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,corruption,defocus_blur,,defocus_blur,3,,,,,150
+fcclip__ade20k__glass_blur,corruptions,94,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,corruption,glass_blur,,glass_blur,3,,,,,150
+fcclip__ade20k__motion_blur,corruptions,95,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,corruption,motion_blur,,motion_blur,3,,,,,150
+fcclip__ade20k__zoom_blur,corruptions,96,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,corruption,zoom_blur,,zoom_blur,3,,,,,150
+fcclip__ade20k__snow,corruptions,97,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,corruption,snow,,snow,3,,,,,150
+fcclip__ade20k__frost,corruptions,98,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,corruption,frost,,frost,3,,,,,150
+fcclip__ade20k__fog,corruptions,99,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,corruption,fog,,fog,3,,,,,150
+fcclip__ade20k__brightness,corruptions,100,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,corruption,brightness,,brightness,3,,,,,150
+fcclip__ade20k__contrast,corruptions,101,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,corruption,contrast,,contrast,3,,,,,150
+fcclip__ade20k__elastic_transform,corruptions,102,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,corruption,elastic_transform,,elastic_transform,3,,,,,150
+fcclip__ade20k__pixelate,corruptions,103,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,corruption,pixelate,,pixelate,3,,,,,150
+fcclip__ade20k__jpeg_compression,corruptions,104,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),ade20k,validation,,corruption,jpeg_compression,,jpeg_compression,3,,,,,150
+fcclip__cityscapes__gaussian_noise,corruptions,105,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),cityscapes,validation,,corruption,gaussian_noise,,gaussian_noise,3,,,,,19
+fcclip__cityscapes__shot_noise,corruptions,106,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),cityscapes,validation,,corruption,shot_noise,,shot_noise,3,,,,,19
+fcclip__cityscapes__impulse_noise,corruptions,107,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),cityscapes,validation,,corruption,impulse_noise,,impulse_noise,3,,,,,19
+fcclip__cityscapes__defocus_blur,corruptions,108,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),cityscapes,validation,,corruption,defocus_blur,,defocus_blur,3,,,,,19
+fcclip__cityscapes__glass_blur,corruptions,109,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),cityscapes,validation,,corruption,glass_blur,,glass_blur,3,,,,,19
+fcclip__cityscapes__motion_blur,corruptions,110,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),cityscapes,validation,,corruption,motion_blur,,motion_blur,3,,,,,19
+fcclip__cityscapes__zoom_blur,corruptions,111,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),cityscapes,validation,,corruption,zoom_blur,,zoom_blur,3,,,,,19
+fcclip__cityscapes__snow,corruptions,112,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),cityscapes,validation,,corruption,snow,,snow,3,,,,,19
+fcclip__cityscapes__frost,corruptions,113,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),cityscapes,validation,,corruption,frost,,frost,3,,,,,19
+fcclip__cityscapes__fog,corruptions,114,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),cityscapes,validation,,corruption,fog,,fog,3,,,,,19
+fcclip__cityscapes__brightness,corruptions,115,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),cityscapes,validation,,corruption,brightness,,brightness,3,,,,,19
+fcclip__cityscapes__contrast,corruptions,116,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),cityscapes,validation,,corruption,contrast,,contrast,3,,,,,19
+fcclip__cityscapes__elastic_transform,corruptions,117,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),cityscapes,validation,,corruption,elastic_transform,,elastic_transform,3,,,,,19
+fcclip__cityscapes__pixelate,corruptions,118,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),cityscapes,validation,,corruption,pixelate,,pixelate,3,,,,,19
+fcclip__cityscapes__jpeg_compression,corruptions,119,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),cityscapes,validation,,corruption,jpeg_compression,,jpeg_compression,3,,,,,19
+fcclip__acdc__fog,acdc,15,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),acdc,validation,fog,acdc,fog,,,,,,,,19
+fcclip__acdc__night,acdc,16,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),acdc,validation,night,acdc,night,,,,,,,,19
+fcclip__acdc__rain,acdc,17,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),acdc,validation,rain,acdc,rain,,,,,,,,19
+fcclip__acdc__snow,acdc,18,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),acdc,validation,snow,acdc,snow,,,,,,,,19
+fcclip__acdc__aggregate,acdc,19,FC-CLIP,fcclip,FC-CLIP (ResNet50x16),CLIP ResNet50x16,fcclip_rn50x16.pth (head fcclip_cocopan_r50x16; CLIP ResNet50x16 from the eval config),acdc,validation,aggregate,acdc,aggregate,,,,,,,,19
+maftp__ade20k__clean,clean,8,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,clean,clean,,,,,,,,150
+maftp__cityscapes__clean,clean,9,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,cityscapes,validation,,clean,clean,,,,,,,,19
+maftp__ade20k__PGD_Linf,adversarial,24,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,adversarial,PGD_Linf,PGD,,,Linf,8.0,0.01,20,150
+maftp__ade20k__SegPGD_Linf,adversarial,25,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,adversarial,SegPGD_Linf,SegPGD,,,Linf,8.0,0.01,20,150
+maftp__ade20k__CosPGD_Linf,adversarial,26,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,adversarial,CosPGD_Linf,CosPGD,,,Linf,8.0,0.01,20,150
+maftp__ade20k__PGD_L2,adversarial,27,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,adversarial,PGD_L2,PGD,,,L2,64.0,0.1,20,150
+maftp__ade20k__SegPGD_L2,adversarial,28,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,adversarial,SegPGD_L2,SegPGD,,,L2,64.0,0.1,20,150
+maftp__ade20k__CosPGD_L2,adversarial,29,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,adversarial,CosPGD_L2,CosPGD,,,L2,64.0,0.1,20,150
+maftp__ade20k__gaussian_noise,corruptions,120,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,corruption,gaussian_noise,,gaussian_noise,3,,,,,150
+maftp__ade20k__shot_noise,corruptions,121,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,corruption,shot_noise,,shot_noise,3,,,,,150
+maftp__ade20k__impulse_noise,corruptions,122,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,corruption,impulse_noise,,impulse_noise,3,,,,,150
+maftp__ade20k__defocus_blur,corruptions,123,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,corruption,defocus_blur,,defocus_blur,3,,,,,150
+maftp__ade20k__glass_blur,corruptions,124,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,corruption,glass_blur,,glass_blur,3,,,,,150
+maftp__ade20k__motion_blur,corruptions,125,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,corruption,motion_blur,,motion_blur,3,,,,,150
+maftp__ade20k__zoom_blur,corruptions,126,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,corruption,zoom_blur,,zoom_blur,3,,,,,150
+maftp__ade20k__snow,corruptions,127,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,corruption,snow,,snow,3,,,,,150
+maftp__ade20k__frost,corruptions,128,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,corruption,frost,,frost,3,,,,,150
+maftp__ade20k__fog,corruptions,129,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,corruption,fog,,fog,3,,,,,150
+maftp__ade20k__brightness,corruptions,130,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,corruption,brightness,,brightness,3,,,,,150
+maftp__ade20k__contrast,corruptions,131,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,corruption,contrast,,contrast,3,,,,,150
+maftp__ade20k__elastic_transform,corruptions,132,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,corruption,elastic_transform,,elastic_transform,3,,,,,150
+maftp__ade20k__pixelate,corruptions,133,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,corruption,pixelate,,pixelate,3,,,,,150
+maftp__ade20k__jpeg_compression,corruptions,134,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,ade20k,validation,,corruption,jpeg_compression,,jpeg_compression,3,,,,,150
+maftp__cityscapes__gaussian_noise,corruptions,135,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,cityscapes,validation,,corruption,gaussian_noise,,gaussian_noise,3,,,,,19
+maftp__cityscapes__shot_noise,corruptions,136,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,cityscapes,validation,,corruption,shot_noise,,shot_noise,3,,,,,19
+maftp__cityscapes__impulse_noise,corruptions,137,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,cityscapes,validation,,corruption,impulse_noise,,impulse_noise,3,,,,,19
+maftp__cityscapes__defocus_blur,corruptions,138,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,cityscapes,validation,,corruption,defocus_blur,,defocus_blur,3,,,,,19
+maftp__cityscapes__glass_blur,corruptions,139,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,cityscapes,validation,,corruption,glass_blur,,glass_blur,3,,,,,19
+maftp__cityscapes__motion_blur,corruptions,140,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,cityscapes,validation,,corruption,motion_blur,,motion_blur,3,,,,,19
+maftp__cityscapes__zoom_blur,corruptions,141,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,cityscapes,validation,,corruption,zoom_blur,,zoom_blur,3,,,,,19
+maftp__cityscapes__snow,corruptions,142,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,cityscapes,validation,,corruption,snow,,snow,3,,,,,19
+maftp__cityscapes__frost,corruptions,143,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,cityscapes,validation,,corruption,frost,,frost,3,,,,,19
+maftp__cityscapes__fog,corruptions,144,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,cityscapes,validation,,corruption,fog,,fog,3,,,,,19
+maftp__cityscapes__brightness,corruptions,145,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,cityscapes,validation,,corruption,brightness,,brightness,3,,,,,19
+maftp__cityscapes__contrast,corruptions,146,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,cityscapes,validation,,corruption,contrast,,contrast,3,,,,,19
+maftp__cityscapes__elastic_transform,corruptions,147,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,cityscapes,validation,,corruption,elastic_transform,,elastic_transform,3,,,,,19
+maftp__cityscapes__pixelate,corruptions,148,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,cityscapes,validation,,corruption,pixelate,,pixelate,3,,,,,19
+maftp__cityscapes__jpeg_compression,corruptions,149,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,cityscapes,validation,,corruption,jpeg_compression,,jpeg_compression,3,,,,,19
+maftp__acdc__fog,acdc,20,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,acdc,validation,fog,acdc,fog,,,,,,,,19
+maftp__acdc__night,acdc,21,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,acdc,validation,night,acdc,night,,,,,,,,19
+maftp__acdc__rain,acdc,22,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,acdc,validation,rain,acdc,rain,,,,,,,,19
+maftp__acdc__snow,acdc,23,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,acdc,validation,snow,acdc,snow,,,,,,,,19
+maftp__acdc__aggregate,acdc,24,MAFT+,maftp,MAFTP-Large semantic,CLIP ConvNeXt-L,maftp_l.pth,acdc,validation,aggregate,acdc,aggregate,,,,,,,,19
+sam3__ade20k__clean,clean,10,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,clean,clean,,,,,,,,150
+sam3__cityscapes__clean,clean,11,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,cityscapes,validation,,clean,clean,,,,,,,,19
+sam3__ade20k__PGD_Linf,adversarial,30,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,adversarial,PGD_Linf,PGD,,,Linf,8.0,0.01,20,150
+sam3__ade20k__SegPGD_Linf,adversarial,31,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,adversarial,SegPGD_Linf,SegPGD,,,Linf,8.0,0.01,20,150
+sam3__ade20k__CosPGD_Linf,adversarial,32,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,adversarial,CosPGD_Linf,CosPGD,,,Linf,8.0,0.01,20,150
+sam3__ade20k__PGD_L2,adversarial,33,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,adversarial,PGD_L2,PGD,,,L2,64.0,0.1,20,150
+sam3__ade20k__SegPGD_L2,adversarial,34,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,adversarial,SegPGD_L2,SegPGD,,,L2,64.0,0.1,20,150
+sam3__ade20k__CosPGD_L2,adversarial,35,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,adversarial,CosPGD_L2,CosPGD,,,L2,64.0,0.1,20,150
+sam3__ade20k__gaussian_noise,corruptions,150,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,corruption,gaussian_noise,,gaussian_noise,3,,,,,150
+sam3__ade20k__shot_noise,corruptions,151,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,corruption,shot_noise,,shot_noise,3,,,,,150
+sam3__ade20k__impulse_noise,corruptions,152,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,corruption,impulse_noise,,impulse_noise,3,,,,,150
+sam3__ade20k__defocus_blur,corruptions,153,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,corruption,defocus_blur,,defocus_blur,3,,,,,150
+sam3__ade20k__glass_blur,corruptions,154,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,corruption,glass_blur,,glass_blur,3,,,,,150
+sam3__ade20k__motion_blur,corruptions,155,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,corruption,motion_blur,,motion_blur,3,,,,,150
+sam3__ade20k__zoom_blur,corruptions,156,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,corruption,zoom_blur,,zoom_blur,3,,,,,150
+sam3__ade20k__snow,corruptions,157,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,corruption,snow,,snow,3,,,,,150
+sam3__ade20k__frost,corruptions,158,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,corruption,frost,,frost,3,,,,,150
+sam3__ade20k__fog,corruptions,159,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,corruption,fog,,fog,3,,,,,150
+sam3__ade20k__brightness,corruptions,160,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,corruption,brightness,,brightness,3,,,,,150
+sam3__ade20k__contrast,corruptions,161,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,corruption,contrast,,contrast,3,,,,,150
+sam3__ade20k__elastic_transform,corruptions,162,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,corruption,elastic_transform,,elastic_transform,3,,,,,150
+sam3__ade20k__pixelate,corruptions,163,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,corruption,pixelate,,pixelate,3,,,,,150
+sam3__ade20k__jpeg_compression,corruptions,164,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,ade20k,validation,,corruption,jpeg_compression,,jpeg_compression,3,,,,,150
+sam3__cityscapes__gaussian_noise,corruptions,165,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,cityscapes,validation,,corruption,gaussian_noise,,gaussian_noise,3,,,,,19
+sam3__cityscapes__shot_noise,corruptions,166,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,cityscapes,validation,,corruption,shot_noise,,shot_noise,3,,,,,19
+sam3__cityscapes__impulse_noise,corruptions,167,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,cityscapes,validation,,corruption,impulse_noise,,impulse_noise,3,,,,,19
+sam3__cityscapes__defocus_blur,corruptions,168,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,cityscapes,validation,,corruption,defocus_blur,,defocus_blur,3,,,,,19
+sam3__cityscapes__glass_blur,corruptions,169,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,cityscapes,validation,,corruption,glass_blur,,glass_blur,3,,,,,19
+sam3__cityscapes__motion_blur,corruptions,170,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,cityscapes,validation,,corruption,motion_blur,,motion_blur,3,,,,,19
+sam3__cityscapes__zoom_blur,corruptions,171,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,cityscapes,validation,,corruption,zoom_blur,,zoom_blur,3,,,,,19
+sam3__cityscapes__snow,corruptions,172,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,cityscapes,validation,,corruption,snow,,snow,3,,,,,19
+sam3__cityscapes__frost,corruptions,173,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,cityscapes,validation,,corruption,frost,,frost,3,,,,,19
+sam3__cityscapes__fog,corruptions,174,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,cityscapes,validation,,corruption,fog,,fog,3,,,,,19
+sam3__cityscapes__brightness,corruptions,175,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,cityscapes,validation,,corruption,brightness,,brightness,3,,,,,19
+sam3__cityscapes__contrast,corruptions,176,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,cityscapes,validation,,corruption,contrast,,contrast,3,,,,,19
+sam3__cityscapes__elastic_transform,corruptions,177,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,cityscapes,validation,,corruption,elastic_transform,,elastic_transform,3,,,,,19
+sam3__cityscapes__pixelate,corruptions,178,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,cityscapes,validation,,corruption,pixelate,,pixelate,3,,,,,19
+sam3__cityscapes__jpeg_compression,corruptions,179,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,cityscapes,validation,,corruption,jpeg_compression,,jpeg_compression,3,,,,,19
+sam3__acdc__fog,acdc,25,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,acdc,validation,fog,acdc,fog,,,,,,,,19
+sam3__acdc__night,acdc,26,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,acdc,validation,night,acdc,night,,,,,,,,19
+sam3__acdc__rain,acdc,27,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,acdc,validation,rain,acdc,rain,,,,,,,,19
+sam3__acdc__snow,acdc,28,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,acdc,validation,snow,acdc,snow,,,,,,,,19
+sam3__acdc__aggregate,acdc,29,SAM 3,sam3,SAM 3 image text,SAM 3,facebook/sam3,acdc,validation,aggregate,acdc,aggregate,,,,,,,,19

@@ -41,6 +41,7 @@ git clone https://github.com/jjakubassa/mmdetection.git object_detection/mmdetec
 | [Segmentation scores](results/semseg_evaluations.csv) | 1,734 segmentation evaluations |
 | [Detection scores](docs/results.md#result-files) | 4,046 object-detection evaluations |
 | [Model summary](results/semseg_model_summary.csv) | Clean mIoU, ReM, GAM, parameter count |
+| [RGB-text extension](docs/vision_language_semseg.md) | Six open-vocabulary segmentors, 258 evaluations |
 | [Detection summary](results/detection_model_summary.csv) | Clean mAP, ReM, GAM, parameter count |
 
 Public segmentation checkpoints:

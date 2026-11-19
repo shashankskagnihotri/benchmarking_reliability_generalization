@@ -17,3 +17,9 @@ semantic_segmentation/slurm
 
 # Distribution / packaging
 *.egg-info/
+
+# RGB-text extension: third-party checkouts and generated Slurm logs.
+semantic_segmentation/third_party/
+slurm/vision_language_semseg/**/*.out
+slurm/vision_language_semseg/**/*.err
+results/vision_language_semseg/runs/
