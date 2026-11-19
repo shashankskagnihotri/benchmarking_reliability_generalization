@@ -21,7 +21,10 @@ envs = {
 print(envs[spec["model_key"]])
 PY
 )
+# conda’s activate.d scripts reference unset variables.
+set +u
 conda activate "$ENV_NAME"
+set -u
 # Stock mmengine 0.10.6. The shared OpenMMLab env points at a RAW-image
 # fork of mmengine that adds parameters absent from these checkpoints.
 export PYTHONPATH="$REPO/semantic_segmentation/.vlseg_py:$REPO/semantic_segmentation/mmsegmentation:$REPO/semantic_segmentation${PYTHONPATH:+:$PYTHONPATH}"
