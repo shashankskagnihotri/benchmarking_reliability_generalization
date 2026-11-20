@@ -9,7 +9,7 @@
 #SBATCH --ntasks=1
 #SBATCH --nodes=1
 #SBATCH --mem=100G
-#SBATCH --time=7:00:00
+#SBATCH --time=24:00:00
 #SBATCH --partition=gpu-vram-94gb
 #SBATCH --array=0-35
 #SBATCH --mail-type=ALL
