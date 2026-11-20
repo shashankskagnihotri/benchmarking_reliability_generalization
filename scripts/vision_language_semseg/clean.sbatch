@@ -11,7 +11,7 @@
 #SBATCH --mem=100G
 #SBATCH --time=7:00:00
 #SBATCH --partition=gpu-vram-94gb
-#SBATCH --array=0-11%8
+#SBATCH --array=0-11
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=shashank.agnihotri@uni-mannheim.de
 #SBATCH --gres-flags=enforce-binding
