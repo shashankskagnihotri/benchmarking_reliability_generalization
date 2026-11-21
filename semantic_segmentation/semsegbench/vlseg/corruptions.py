@@ -48,7 +48,24 @@ def apply_corruption(image_rgb: np.ndarray, name: str, image_id: str, severity: 
         raise ValueError(f"this extension evaluates severity {SEVERITY}, got {severity}")
     if image_rgb.dtype != np.uint8 or image_rgb.ndim != 3 or image_rgb.shape[2] != 3:
         raise ValueError("corruption expects HWC uint8 RGB before normalization")
+    # imagecorruptions still passes skimage's removed ``multichannel`` argument
+    # and uses ``np.float_``, which NumPy 2 removed. The corruption formulas
+    # stay the published ones.
+    if not hasattr(np, "float_"):
+        np.float_ = np.float64
+    import skimage.filters as sk_filters
+
+    original_gaussian = sk_filters.gaussian
+
+    def _gaussian(image, sigma=1, multichannel=None, channel_axis=None, **kwargs):
+        if multichannel and channel_axis is None:
+            channel_axis = -1
+        return original_gaussian(image, sigma=sigma, channel_axis=channel_axis, **kwargs)
+
     from imagecorruptions import corrupt
+    import imagecorruptions.corruptions as corruption_impl
+
+    corruption_impl.gaussian = _gaussian
 
     state = np.random.get_state()
     np.random.seed(corruption_seed(image_id))
